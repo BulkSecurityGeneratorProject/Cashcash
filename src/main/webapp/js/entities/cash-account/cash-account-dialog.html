@@ -1,0 +1,308 @@
+<form name="editForm" role="form" novalidate ng-submit="$ctrl.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="$ctrl.clear()">&times;</button>
+        <h4 class="modal-title" id="myCashAccountLabel">Create or edit a Cash Account</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Name</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="name">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+                            <input type="text" class="form-control" name="name" id="field_name"
+                                   ng-model="$ctrl.cashAccount.name"
+                                   placeholder="name"
+                                   required
+                                   ng-minlength="2"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-offset-3" ng-show="editForm.name.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.name.$error.required">
+                            This field is required.
+                        </p>
+
+                        <p class="help-block"
+                           ng-show="editForm.name.$error.minlength" translate-value-min="2">
+                            This field is required to be at least 2 characters.
+                        </p>
+
+                        <p class="help-block"
+                           ng-show="editForm.name.$error.maxlength">
+                            This field cannot be longer than 80 characters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Type</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="type">
+                                <i class="fa fa-tag"></i>
+                            </div>
+                            <selectize
+                                    placeholder="type"
+                                    config="{closeAfterSelect:true, valueField: 'type', labelField: 'type', searchField: ['type'], maxItems:1}"
+                                    ng-model="$ctrl.cashAccount.type"
+                                    options="[{type: 'ASSET'},{type: 'LIABILITY'},{type: 'EQUITY'},{type: 'INCOME'},{type: 'EXPENSE'}]"></selectize>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-offset-3" ng-show="editForm.type.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.type.$error.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Code</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="code">
+                                <i class="fa fa-barcode"></i>
+                            </div>
+                            <input type="text"
+                                   class="form-control"
+                                   name="code"
+                                   id="field_code"
+                                   ng-model="$ctrl.cashAccount.code"
+                                   placeholder="code"
+                                   ng-minlength="1"/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-offset-3" ng-show="editForm.code.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.code.$error.minlength" translate-value-min="1">
+                            This field is required to be at least 1 characters.
+                        </p>
+
+                        <p class="help-block"
+                           ng-show="editForm.code.$error.maxlength">
+                            This field cannot be longer than 10 characters.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Currency</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="currency">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <selectize
+                                    placeholder="currency"
+                                    config="{closeAfterSelect:true, valueField: 'id', labelField: 'code', searchField: ['code'], maxItems:1}"
+                                    ng-model="$ctrl.cashAccount.currencyId"
+                                    options="$ctrl.cashCurrencies"></selectize>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-md-offset-3" ng-show="editForm.currency.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.currency.$error.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3"></label>
+
+
+                    <div class="col-sm-9">
+                        <button type="button"
+                                class="btn btn-primary"
+                                name="multiCurrency"
+                                id="field_multiCurrency"
+                                ng-model="$ctrl.cashAccount.multiCurrency"
+                                placeholder="multicurrency"
+                                uib-btn-checkbox><i class="fa fa-fw fa-check-square-o"
+                                                    ng-show="$ctrl.cashAccount.multiCurrency"/> <i
+                                class="fa fa-fw fa-square-o" ng-show="!$ctrl.cashAccount.isMultiCurrency"/> Exchange Account
+                        </button>
+                    </div>
+                    <div class="col-sm-9 col-md-offset-3" ng-show="editForm.isMultiCurrency.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.isMultiCurrency.$error.required">
+                            This field is required.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="!cashAccount.id">
+                    <label class="control-label col-sm-3">Parent Account</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="parentAccount">
+                                <i class="fa fa-caret-square-o-up"></i>
+                            </div>
+                            <selectize
+                                    placeholder="parentAccount"
+                                    config="$ctrl.selectizeAccountConfig"
+                                    ng-model="$ctrl.cashAccount.parentAccountId"
+                                    options="$ctrl.cashAccounts"></selectize>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Csv config</label>
+
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <div class="input-group-addon" uib-tooltip="csvConfig">
+                                <i class="fa fa-caret-square-o-up"></i>
+                            </div>
+                            <selectize
+                                    placeholder="csvConfig"
+                                    config="{closeAfterSelect:true, valueField: 'id', labelField: 'name', searchField: ['name'], maxItems:1}"
+                                    ng-model="$ctrl.cashAccount.csvConfigId"
+                                    options="$ctrl.csvConfigs"></selectize>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <uib-accordion>
+                <div uib-accordion-group ng-init="isOpen = true" is-open="isOpen">
+                    <uib-accordion-heading>
+                        Account Details <i class="pull-right fa fa-fw"
+                                           ng-class="{'fa-chevron-down': isOpen, 'fa-chevron-right': !isOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Bank Id</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="BankId">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="bankId"
+                                           id="field_bankId"
+                                           ng-model="$ctrl.cashAccount.bankId"
+                                           placeholder="Bank Id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Branch Id</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="BranchId">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="branchId"
+                                           id="field_branchId"
+                                           ng-model="$ctrl.cashAccount.branchId"
+                                           placeholder="Branch Id"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Account Number</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="Account Number">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="accountNumber"
+                                           id="field_accountNumber"
+                                           ng-model="$ctrl.cashAccount.accountNumber"
+                                           placeholder="Account Number"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Account Key</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="Account Key">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="accountKey"
+                                           id="field_accountKey"
+                                           ng-model="$ctrl.cashAccount.accountKey"
+                                           placeholder="Account Key"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Iban</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="Iban">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="iban"
+                                           id="field_iban"
+                                           ng-model="$ctrl.cashAccount.iban"
+                                           placeholder="Iban"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Bic</label>
+
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <div class="input-group-addon" uib-tooltip="Bic">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="bic"
+                                           id="field_bic"
+                                           ng-model="$ctrl.cashAccount.bic"
+                                           placeholder="Bic"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || $ctrl.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

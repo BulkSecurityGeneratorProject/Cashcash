@@ -1,0 +1,77 @@
+<div>
+    <h2><span>Cash Account</span> {{$ctrl.cashAccount.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Creation Date</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.creationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.name}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span translate="{{'cashcashApp.CashAccountType.' + $ctrl.cashAccount.type}}">{{$ctrl.cashAccount.type}}</span>
+        </dd>
+        <dt><span>Code</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.code}}</span>
+        </dd>
+        <dt><span>Level</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.level}}</span>
+        </dd>
+        <dt><span>Is Multi Currency</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.multiCurrency}}</span>
+        </dd>
+        <dt><span>Bank Id</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.bankId}}</span>
+        </dd>
+        <dt><span>Branch Id</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.branchId}}</span>
+        </dd>
+        <dt><span>Account Number</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.accountNumber}}</span>
+        </dd>
+        <dt><span>Account Key</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.accountKey}}</span>
+        </dd>
+        <dt><span>Iban</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.iban}}</span>
+        </dd>
+        <dt><span>Bic</span></dt>
+        <dd>
+            <span>{{$ctrl.cashAccount.bic}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{$ctrl.cashAccount.user.login}}
+        </dd>
+        <dt><span>Currency</span></dt>
+        <dd>
+            <a ui-sref="cash-currency-detail({id:$ctrl.cashAccount.currency.id})">{{$ctrl.cashAccount.currency.code}}</a>
+        </dd>
+        <dt><span>Parent Account</span></dt>
+        <dd>
+            <a ui-sref="cash-account-detail({id:$ctrl.cashAccount.parentAccount.id})">{{$ctrl.cashAccount.parentAccount.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

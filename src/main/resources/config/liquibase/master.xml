@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" />
+    <include file="config/liquibase/changelog/2016_06_24_00_added_entity_CashCurrency.xml" />
+    <include file="config/liquibase/changelog/2016_06_24_01_added_entity_constraints_CashCurrency.xml" />
+    <include file="config/liquibase/changelog/2016_06_25_00_added_entity_CashAccount.xml" />
+    <include file="config/liquibase/changelog/2016_06_25_01_added_entity_constraints_CashAccount.xml" />
+    <include file="config/liquibase/changelog/2016_06_26_00_added_entity_CashTransaction.xml" />
+    <include file="config/liquibase/changelog/2016_06_26_01_added_entity_constraints_CashTransaction.xml" />
+    <include file="config/liquibase/changelog/2016_06_27_00_added_entity_CashSplit.xml" />
+    <include file="config/liquibase/changelog/2016_06_27_02_added_entity_constraints_CashSplit.xml" />
+    <include file="config/liquibase/changelog/2016_08_27_00_added_new_colum_to_entity_CashSplit.xml" />
+    <include file="config/liquibase/changelog/2016_09_03_00_changed_column_in_CashCurrency.xml" />
+    <include file="config/liquibase/changelog/2016_10_06_00_addTriggerToPreventUpdateOfUserId.xml" />
+    <include file="config/liquibase/changelog/2016_10_10_00_added_entity_CashCsvConfig.xml" />
+    <include file="config/liquibase/changelog/2016_10_10_01_added_entity_constraints_CashCsvConfig.xml" />
+    <include file="config/liquibase/changelog/2016_11_05_00_added_entity_CashSplitSum.xml" />
+    <include file="config/liquibase/changelog/2016_11_05_01_added_entity_constraints_CashSplitSum.xml" />
+    <include file="config/liquibase/changelog/2017_05_23_01_changed_column_in_CashCurrency.xml" />
+    <include file="config/liquibase/changelog/2017_05_24_01_added_entity_CashRate.xml" />
+    <include file="config/liquibase/changelog/2017_06_16_00_addTriggerToPreventUpdateOfUserId.xml" />
+    <include file="config/liquibase/changelog/2017_06_17_00_added_index.xml" />
+</databaseChangeLog>

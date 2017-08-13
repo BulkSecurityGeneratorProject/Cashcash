@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<property name="bigIntType" value="bigint" dbms="postgresql, mysql"/>
+	<property name="bigIntType" value="integer" dbms="h2"/>
+	<property name="bigIntType" value="number(19,0)" dbms="oracle"/>
+
+	<!--
+		Added column to cashCurrency.
+	-->
+	<changeSet id="2016_09_03_00_changed_column_in_CashCurrency" author="gagnepain">
+		<dropColumn tableName="cash_currency">
+			<column name="name"/>
+			<column name="short_name"/>
+		</dropColumn>
+		<addColumn tableName="cash_currency">
+			<column name="code" type="varchar(3)">
+				<constraints nullable="false"/>
+			</column>
+
+			<column name="numeric_code" type="${bigIntType}">
+				<constraints nullable="true"/>
+			</column>
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>

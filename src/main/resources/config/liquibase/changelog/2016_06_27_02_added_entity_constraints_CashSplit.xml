@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity CashSplit.
+    -->
+    <changeSet id="2016_06_27_02_added_entity_constraints_CashSplit" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="cash_split"
+                                 constraintName="fk_cashsplit_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="account_id"
+                                 baseTableName="cash_split"
+                                 constraintName="fk_cashsplit_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_account"/>
+
+        <addForeignKeyConstraint baseColumnNames="currency_id"
+                                 baseTableName="cash_split"
+                                 constraintName="fk_cashsplit_currency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_currency"/>
+
+        <addForeignKeyConstraint baseColumnNames="transaction_id"
+                                 baseTableName="cash_split"
+                                 constraintName="fk_cashsplit_transaction_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_transaction"/>
+
+    </changeSet>
+</databaseChangeLog>

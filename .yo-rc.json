@@ -1,0 +1,28 @@
+{
+  "generator-jhipster": {
+    "jhipsterVersion": "3.4.2",
+    "baseName": "cashcash",
+    "packageName": "com.gagnepain.cashcash",
+    "packageFolder": "com/gagnepain/cashcash",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "buildTool": "maven",
+    "enableSocialSignIn": true,
+    "jwtSecretKey": "21763e8d08dadf63a1b48e081607d85a4f04d889",
+    "useSass": false,
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "gatling",
+      "cucumber"
+    ],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}

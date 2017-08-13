@@ -1,0 +1,53 @@
+<div>
+    <h2><span>Cash Transaction</span> {{$ctrl.cashTransaction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Creation Date</span></dt>
+        <dd>
+            <span>{{$ctrl.cashTransaction.creationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Modified Date</span></dt>
+        <dd>
+            <span>{{$ctrl.cashTransaction.modifiedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{$ctrl.cashTransaction.description}}</span>
+        </dd>
+        <dt><span>Ofx Id</span></dt>
+        <dd>
+            <span>{{$ctrl.cashTransaction.ofxId}}</span>
+        </dd>
+        <dt><span>Transaction Date</span></dt>
+        <dd>
+            <span>{{$ctrl.cashTransaction.transactionDate | date:'medium'}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span translate="{{'cashcashApp.CashTransactionType.' + $ctrl.cashTransaction.type}}">{{$ctrl.cashTransaction.type}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{$ctrl.cashTransaction.user.login}}
+        </dd>
+        <dt><span>Amount</span></dt>
+        <dd ng-class="$ctrl.increaseAssets() ? 'bg-success' : 'bg-danger'">
+            <span>{{$ctrl.getPositiveSplit().amount}}</span>
+        </dd>
+        <dt><span>OutAccount</span></dt>
+        <dd>
+            <a ui-sref="cash-account-detail({id:$ctrl.getNegativeSplit().account.id})">{{$ctrl.getNegativeSplit().account.name}}</a>
+        </dd>
+        <dt><span>InAccount</span></dt>
+        <dd>
+            <a ui-sref="cash-account-detail({id:$ctrl.getPositiveSplit().account.id})">{{$ctrl.getPositiveSplit().account.name}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

@@ -1,0 +1,324 @@
+<form name="editForm" role="form" novalidate ng-submit="$ctrl.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="$ctrl.clear()">&times;</button>
+        <h4 class="modal-title" id="myCashCsvConfigLabel">Create or edit a Cash Csv Config</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3">Name</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="name">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="text" class="form-control" name="name" id="field_name"
+                               ng-model="$ctrl.cashCsvConfig.name"
+                               placeholder="name"
+                               required
+                               ng-minlength="2"/>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 col-md-offset-3" ng-show="editForm.name.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.name.$error.required">
+                        This field is required.
+                    </p>
+
+                    <p class="help-block"
+                       ng-show="editForm.name.$error.minlength" translate-value-min="2">
+                        This field is required to be at least 2 characters.
+                    </p>
+
+                    <p class="help-block"
+                       ng-show="editForm.name.$error.maxlength">
+                        This field cannot be longer than 80 characters.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Charset</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="charset">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <selectize
+                                placeholder="charset"
+                                config="$ctrl.selectizeConfig"
+                                ng-model="$ctrl.cashCsvConfig.charset"
+                                options="$ctrl.charsetList"
+                                required></selectize>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3"></label>
+
+
+                <div class="col-sm-9">
+                    <button type="button"
+                            class="btn btn-primary"
+                            name="hasHeader"
+                            id="field_hasHeader"
+                            ng-model="$ctrl.cashCsvConfig.hasHeader"
+                            placeholder="hasHeader"
+                            uib-btn-checkbox><i class="fa fa-fw fa-check-square-o"
+                                                ng-show="$ctrl.cashCsvConfig.hasHeader"/> <i
+                            class="fa fa-fw fa-square-o" ng-show="!$ctrl.cashCsvConfig.hasHeader"/> Has Header
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Quote Char</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="quoteChar">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="text" class="form-control" name="name" id="field_quoteChar"
+                               ng-model="$ctrl.cashCsvConfig.quoteChar"
+                               placeholder="quoteChar"
+                               ng-maxlength="1"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Delimiter Char</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="delimiterChar">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="text" class="form-control" name="name" id="field_delimiterChar"
+                               ng-model="$ctrl.cashCsvConfig.delimiterChar"
+                               placeholder="quoteChar"
+                               ng-maxlength="1"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">End Of Line Symbols</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="endOfLineSymbols">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <selectize
+                                placeholder="endOfLineSymbols"
+                                config="$ctrl.selectizeConfig"
+                                ng-model="$ctrl.cashCsvConfig.endOfLineSymbols"
+                                options="$ctrl.endOfLineSymbolsList"
+                                required></selectize>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Transaction Date Format</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="transactionDateFormat">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="text" class="form-control" name="name" id="field_transactionDateFormat"
+                               ng-model="$ctrl.cashCsvConfig.transactionDateFormat"
+                               placeholder="transactionDateFormat"
+                               required
+                               ng-minlength="6"
+                               ng-maxlength="20"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">Decimal delimiter</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="decimalDelimiter">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="text" class="form-control" name="name" id="field_decimalDelimiter"
+                               ng-model="$ctrl.cashCsvConfig.decimalDelimiter"
+                               placeholder="decimalDelimiter"
+                               ng-maxlength="1"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">unique Id Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="uniqIdColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="uniqIdColumnIndex"
+                               id="field_uniqIdColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.uniqIdColumnIndex"
+                               placeholder="uniqIdColumnIndex"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">description Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="descriptionColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="descriptionColumnIndex"
+                               id="field_descriptionColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.descriptionColumnIndex"
+                               placeholder="descriptionColumnIndex"
+                               required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">detail Description Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="detailDescriptionColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="detailDescriptionColumnIndex"
+                               id="field_detailDescriptionColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.detailDescriptionColumnIndex"
+                               placeholder="descriptionColumnIndex"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">account Code Number Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="accountCodeNumberColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="accountCodeNumberColumnIndex"
+                               id="field_accountCodeNumberColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.accountCodeNumberColumnIndex"
+                               placeholder="accountCodeNumberColumnIndex"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">transaction Date Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="transactionDateColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="transactionDateColumnIndex"
+                               id="field_transactionDateColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.transactionDateColumnIndex"
+                               placeholder="accountCodeNumberColumnIndex"
+                               required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">transaction Type Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="transactionTypeColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="transactionTypeColumnIndex"
+                               id="field_transactionTypeColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.transactionTypeColumnIndex"
+                               placeholder="transactionTypeColumnIndex"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">amount Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="amountColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="amountColumnIndex"
+                               id="field_amountColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.amountColumnIndex"
+                               placeholder="amountColumnIndex"
+                               required/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3">currency Column Index</label>
+
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-addon" uib-tooltip="currencyColumnIndex">
+                            <i class="fa fa-file-text"></i>
+                        </div>
+                        <input type="number"
+                               class="form-control"
+                               name="currencyColumnIndex"
+                               id="field_currencyColumnIndex"
+                               ng-model="$ctrl.cashCsvConfig.currencyColumnIndex"
+                               placeholder="currencyColumnIndex"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || $ctrl.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

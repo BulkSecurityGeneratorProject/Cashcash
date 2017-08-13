@@ -1,0 +1,81 @@
+<div>
+    <div class="well">
+        <h2>Cash Csv Configs</h2>
+        <br/>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ui-sref="cash-csv-config-new">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span>
+                        Create new Csv Config
+                    </span>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ui-sref="cash-csv-config.importFile">
+                        <span class="glyphicon glyphicon-upload"></span>
+                        <span>
+                        Import Csv Config
+                    </span>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ng-click="$ctrl.exportFile()">
+                        <span class="glyphicon glyphicon-download"></span>
+                        <span>
+                        Export Csv config
+                    </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <jhi-alert></jhi-alert>
+    <br/>
+
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+            <tr jh-sort="$ctrl.predicate" ascending="$ctrl.reverse" callback="$ctrl.transition()">
+                <th jh-sort-by="name"><span>name</span> <span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="cashCsvConfig in $ctrl.cashCsvConfigs track by cashCsvConfig.id">
+                <td>{{cashCsvConfig.name}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                ui-sref="cash-csv-config-detail({id:cashCsvConfig.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="cash-csv-config-edit({id:cashCsvConfig.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="cash-csv-config-delete({id:cashCsvConfig.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                            <span class="hidden-xs hidden-sm"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="$ctrl.page" query-count="$ctrl.queryCount" items-per-page="$ctrl.itemsPerPage"></jhi-item-count>
+        <ul uib-pagination class="pagination-sm" total-items="$ctrl.totalItems" ng-model="$ctrl.page"
+            ng-change="$ctrl.transition()"></ul>
+    </div>
+</div>

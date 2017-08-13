@@ -1,0 +1,27 @@
+<div>
+    <div class="well">
+        <h2>Balance Graph</h2>
+        <br/>
+    </div>
+    <br/>
+    <jh-alert></jh-alert>
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">Present state</div>
+        <div class="panel-body">
+            <pie-chart ng-if="$ctrl.cashSplitSumPie" config="$ctrl.cashSplitSumPie.config" series="$ctrl.cashSplitSumPie.series">
+            </pie-chart>
+        </div>
+    </div>
+
+    <div ng-repeat="chartByAccount in $ctrl.chartByAccountList" class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <line-chart config="chartByAccount.config" series="chartByAccount.series">
+                </line-chart>
+            </div>
+        </div>
+    </div>
+
+</div>

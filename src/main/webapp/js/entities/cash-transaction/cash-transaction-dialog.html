@@ -1,0 +1,21 @@
+<form name="editForm" role="form" novalidate ng-submit="$ctrl.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="$ctrl.clear()">&times;</button>
+        <h4 class="modal-title" id="myCashTransactionLabel">Create or edit a Cash Transaction</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <cash-transaction-edit cash-transaction="$ctrl.cashTransaction" cash-accounts="$ctrl.cashAccounts"
+                               cash-currencies="$ctrl.cashCurrencies"/>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || $ctrl.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

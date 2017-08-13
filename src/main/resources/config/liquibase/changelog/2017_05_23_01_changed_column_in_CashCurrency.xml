@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<property name="bigIntType" value="bigint" dbms="postgresql, mysql"/>
+	<property name="bigIntType" value="integer" dbms="h2"/>
+	<property name="bigIntType" value="number(19,0)" dbms="oracle"/>
+
+	<!--
+		Added column to cashCurrency.
+	-->
+	<changeSet id="2017_05_23_01_changed_column_in_CashCurrency" author="gagnepain">
+        <sql>DROP TRIGGER IF EXISTS trigger_cash_currency_prevent_user_id_update
+        </sql>
+        <dropForeignKeyConstraint
+                baseTableName="cash_currency"
+                constraintName="fk_cashcurrency_user_id"/>
+		<dropColumn tableName="cash_currency">
+			<column name="user_id"/>
+		</dropColumn>
+        <addUniqueConstraint tableName="cash_currency" columnNames="code" />
+	</changeSet>
+</databaseChangeLog>

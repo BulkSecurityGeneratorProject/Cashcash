@@ -1,0 +1,642 @@
+[
+  {
+    "value": "ASCII",
+    "description": "American Standard Code for Information Interchange"
+  },
+  {
+    "value": "Big5",
+    "description": "Big5, Traditional Chinese"
+  },
+  {
+    "value": "Big5_HKSCS",
+    "description": "Big5 with Hong Kong extensions, Traditional Chinese (incorporating 2001 revision)"
+  },
+  {
+    "value": "Big5_Solaris",
+    "description": "Big5 with seven additional Hanzi ideograph character mappings for the Solaris zh_TW.BIG5 locale"
+  },
+  {
+    "value": "Cp037",
+    "description": "USA, Canada (Bilingual, French), Netherlands, Portugal, Brazil, Australia"
+  },
+  {
+    "value": "Cp1006",
+    "description": "IBM AIX Pakistan (Urdu)"
+  },
+  {
+    "value": "Cp1025",
+    "description": "IBM Multilingual Cyrillic: Bulgaria, Bosnia, Herzegovinia, Macedonia (FYR)"
+  },
+  {
+    "value": "Cp1026",
+    "description": "IBM Latin-5, Turkey"
+  },
+  {
+    "value": "Cp1046",
+    "description": "IBM Arabic - Windows"
+  },
+  {
+    "value": "Cp1047",
+    "description": "Latin-1 character set for EBCDIC hosts"
+  },
+  {
+    "value": "Cp1097",
+    "description": "IBM Iran (Farsi)/Persian"
+  },
+  {
+    "value": "Cp1098",
+    "description": "IBM Iran (Farsi)/Persian (PC)"
+  },
+  {
+    "value": "Cp1112",
+    "description": "IBM Latvia, Lithuania"
+  },
+  {
+    "value": "Cp1122",
+    "description": "IBM Estonia"
+  },
+  {
+    "value": "Cp1123",
+    "description": "IBM Ukraine"
+  },
+  {
+    "value": "Cp1124",
+    "description": "IBM AIX Ukraine"
+  },
+  {
+    "value": "Cp1140",
+    "description": "Variant of Cp037 with Euro character"
+  },
+  {
+    "value": "Cp1141",
+    "description": "Variant of Cp273 with Euro character"
+  },
+  {
+    "value": "Cp1142",
+    "description": "Variant of Cp277 with Euro character"
+  },
+  {
+    "value": "Cp1143",
+    "description": "Variant of Cp278 with Euro character"
+  },
+  {
+    "value": "Cp1144",
+    "description": "Variant of Cp280 with Euro character"
+  },
+  {
+    "value": "Cp1145",
+    "description": "Variant of Cp284 with Euro character"
+  },
+  {
+    "value": "Cp1146",
+    "description": "Variant of Cp285 with Euro character"
+  },
+  {
+    "value": "Cp1147",
+    "description": "Variant of Cp297 with Euro character"
+  },
+  {
+    "value": "Cp1148",
+    "description": "Variant of Cp500 with Euro character"
+  },
+  {
+    "value": "Cp1149",
+    "description": "Variant of Cp871 with Euro character"
+  },
+  {
+    "value": "Cp1250",
+    "description": "Windows Eastern European"
+  },
+  {
+    "value": "Cp1251",
+    "description": "Windows Cyrillic"
+  },
+  {
+    "value": "Cp1252",
+    "description": "Windows Latin-1"
+  },
+  {
+    "value": "Cp1253",
+    "description": "Windows Greek"
+  },
+  {
+    "value": "Cp1254",
+    "description": "Windows Turkish"
+  },
+  {
+    "value": "Cp1255",
+    "description": "Windows Hebrew"
+  },
+  {
+    "value": "Cp1256",
+    "description": "Windows Arabic"
+  },
+  {
+    "value": "Cp1257",
+    "description": "Windows Baltic"
+  },
+  {
+    "value": "Cp1258",
+    "description": "Windows Vietnamese"
+  },
+  {
+    "value": "Cp1381",
+    "description": "IBM OS/2, DOS People's Republic of China (PRC)"
+  },
+  {
+    "value": "Cp1383",
+    "description": "IBM AIX People's Republic of China (PRC)"
+  },
+  {
+    "value": "Cp273",
+    "description": "IBM Austria, Germany"
+  },
+  {
+    "value": "Cp277",
+    "description": "IBM Denmark, Norway"
+  },
+  {
+    "value": "Cp278",
+    "description": "IBM Finland, Sweden"
+  },
+  {
+    "value": "Cp280",
+    "description": "IBM Italy"
+  },
+  {
+    "value": "Cp284",
+    "description": "IBM Catalan/Spain, Spanish Latin America"
+  },
+  {
+    "value": "Cp285",
+    "description": "IBM United Kingdom, Ireland"
+  },
+  {
+    "value": "Cp297",
+    "description": "IBM France"
+  },
+  {
+    "value": "Cp33722",
+    "description": "IBM-eucJP - Japanese (superset of 5050)"
+  },
+  {
+    "value": "Cp420",
+    "description": "IBM Arabic"
+  },
+  {
+    "value": "Cp424",
+    "description": "IBM Hebrew"
+  },
+  {
+    "value": "Cp437",
+    "description": "MS-DOS United States, Australia, New Zealand, South Africa"
+  },
+  {
+    "value": "Cp500",
+    "description": "EBCDIC 500V1"
+  },
+  {
+    "value": "Cp50220",
+    "description": "Windows Codepage 50220 (7-bit implementation)"
+  },
+  {
+    "value": "Cp50221",
+    "description": "Windows Codepage 50221 (7-bit implementation)"
+  },
+  {
+    "value": "Cp737",
+    "description": "PC Greek"
+  },
+  {
+    "value": "Cp775",
+    "description": "PC Baltic"
+  },
+  {
+    "value": "Cp834",
+    "description": "IBM EBCDIC DBCS-only Korean"
+  },
+  {
+    "value": "Cp838",
+    "description": "IBM Thailand extended SBCS"
+  },
+  {
+    "value": "Cp850",
+    "description": "MS-DOS Latin-1"
+  },
+  {
+    "value": "Cp852",
+    "description": "MS-DOS Latin-2"
+  },
+  {
+    "value": "Cp855",
+    "description": "IBM Cyrillic"
+  },
+  {
+    "value": "Cp856",
+    "description": "IBM Hebrew"
+  },
+  {
+    "value": "Cp857",
+    "description": "IBM Turkish"
+  },
+  {
+    "value": "Cp858",
+    "description": "Variant of Cp850 with Euro character"
+  },
+  {
+    "value": "Cp860",
+    "description": "MS-DOS Portuguese"
+  },
+  {
+    "value": "Cp861",
+    "description": "MS-DOS Icelandic"
+  },
+  {
+    "value": "Cp862",
+    "description": "PC Hebrew"
+  },
+  {
+    "value": "Cp863",
+    "description": "MS-DOS Canadian French"
+  },
+  {
+    "value": "Cp864",
+    "description": "PC Arabic"
+  },
+  {
+    "value": "Cp865",
+    "description": "MS-DOS Nordic"
+  },
+  {
+    "value": "Cp866",
+    "description": "MS-DOS Russian"
+  },
+  {
+    "value": "Cp868",
+    "description": "MS-DOS Pakistan"
+  },
+  {
+    "value": "Cp869",
+    "description": "IBM Modern Greek"
+  },
+  {
+    "value": "Cp870",
+    "description": "IBM Multilingual Latin-2"
+  },
+  {
+    "value": "Cp871",
+    "description": "IBM Iceland"
+  },
+  {
+    "value": "Cp874",
+    "description": "IBM Thai"
+  },
+  {
+    "value": "Cp875",
+    "description": "IBM Greek"
+  },
+  {
+    "value": "Cp918",
+    "description": "IBM Pakistan (Urdu)"
+  },
+  {
+    "value": "Cp921",
+    "description": "IBM Latvia, Lithuania (AIX, DOS)"
+  },
+  {
+    "value": "Cp922",
+    "description": "IBM Estonia (AIX, DOS)"
+  },
+  {
+    "value": "Cp930",
+    "description": "Japanese Katakana-Kanji mixed with 4370 UDC, superset of 5026"
+  },
+  {
+    "value": "Cp933",
+    "description": "Korean Mixed with 1880 UDC, superset of 5029"
+  },
+  {
+    "value": "Cp935",
+    "description": "Simplified Chinese Host mixed with 1880 UDC, superset of 5031"
+  },
+  {
+    "value": "Cp937",
+    "description": "Traditional Chinese Host miexed with 6204 UDC, superset of 5033"
+  },
+  {
+    "value": "Cp939",
+    "description": "Japanese Latin Kanji mixed with 4370 UDC, superset of 5035"
+  },
+  {
+    "value": "Cp942",
+    "description": "IBM OS/2 Japanese, superset of Cp932"
+  },
+  {
+    "value": "Cp942C",
+    "description": "Variant of Cp942"
+  },
+  {
+    "value": "Cp943",
+    "description": "IBM OS/2 Japanese, superset of Cp932 and Shift-JIS"
+  },
+  {
+    "value": "Cp943C",
+    "description": "Variant of Cp943"
+  },
+  {
+    "value": "Cp948",
+    "description": "OS/2 Chinese (Taiwan) superset of 938"
+  },
+  {
+    "value": "Cp949",
+    "description": "PC Korean"
+  },
+  {
+    "value": "Cp949C",
+    "description": "Variant of Cp949"
+  },
+  {
+    "value": "Cp950",
+    "description": "PC Chinese (Hong Kong, Taiwan)"
+  },
+  {
+    "value": "Cp964",
+    "description": "AIX Chinese (Taiwan)"
+  },
+  {
+    "value": "Cp970",
+    "description": "AIX Korean"
+  },
+  {
+    "value": "EUC_CN",
+    "description": "GB2312, EUC encoding, Simplified Chinese"
+  },
+  {
+    "value": "EUC_JP",
+    "description": "JISX 0201, 0208 and 0212, EUC encoding Japanese"
+  },
+  {
+    "value": "EUC_JP_LINUX",
+    "description": "JISX 0201, 0208, EUC encoding Japanese"
+  },
+  {
+    "value": "EUC_JP_Solaris",
+    "description": "JISX 0201, 0208, 0212, EUC encoding Japanese"
+  },
+  {
+    "value": "EUC_KR",
+    "description": "KS C 5601, EUC encoding, Korean"
+  },
+  {
+    "value": "EUC_TW",
+    "description": "CNS11643 (Plane 1-7,15), EUC encoding, Traditional Chinese"
+  },
+  {
+    "value": "GB18030",
+    "description": "Simplified Chinese, PRC standard"
+  },
+  {
+    "value": "GBK",
+    "description": "GBK, Simplified Chinese"
+  },
+  {
+    "value": "ISCII91",
+    "description": "ISCII91 encoding of Indic scripts"
+  },
+  {
+    "value": "ISO2022_CN_CNS",
+    "description": "CNS11643 in ISO 2022 CN form, Traditional Chinese (conversion from Unicode only)"
+  },
+  {
+    "value": "ISO2022_CN_GB",
+    "description": "GB2312 in ISO 2022 CN form, Simplified Chinese (conversion from Unicode only)"
+  },
+  {
+    "value": "ISO2022CN",
+    "description": "GB2312 and CNS11643 in ISO 2022 CN form, Simplified and Traditional Chinese (conversion to Unicode only)"
+  },
+  {
+    "value": "ISO2022JP",
+    "description": "JIS X 0201, 0208, in ISO 2022 form, Japanese"
+  },
+  {
+    "value": "ISO2022KR",
+    "description": "ISO 2022 KR, Korean"
+  },
+  {
+    "value": "ISO8859_1",
+    "description": "ISO-8859-1, Latin Alphabet No. 1"
+  },
+  {
+    "value": "ISO8859_13",
+    "description": "Latin Alphabet No. 7"
+  },
+  {
+    "value": "ISO8859_15",
+    "description": "Latin Alphabet No. 9"
+  },
+  {
+    "value": "ISO8859_2",
+    "description": "Latin Alphabet No. 2"
+  },
+  {
+    "value": "ISO8859_3",
+    "description": "Latin Alphabet No. 3"
+  },
+  {
+    "value": "ISO8859_4",
+    "description": "Latin Alphabet No. 4"
+  },
+  {
+    "value": "ISO8859_5",
+    "description": "Latin/Cyrillic Alphabet"
+  },
+  {
+    "value": "ISO8859_6",
+    "description": "Latin/Arabic Alphabet"
+  },
+  {
+    "value": "ISO8859_7",
+    "description": "Latin/Greek Alphabet (ISO-8859-7:2003)"
+  },
+  {
+    "value": "ISO8859_8",
+    "description": "Latin/Hebrew Alphabet"
+  },
+  {
+    "value": "ISO8859_9",
+    "description": "Latin Alphabet No. 5"
+  },
+  {
+    "value": "JIS_X0201",
+    "description": "JIS X 0201"
+  },
+  {
+    "value": "JIS_X0212-1990",
+    "description": "JIS X 0212"
+  },
+  {
+    "value": "JISAutoDetect",
+    "description": "Detects and converts from Shift-JIS, EUC-JP, ISO 2022 JP (conversion to Unicode only)"
+  },
+  {
+    "value": "KOI8_R",
+    "description": "KOI8-R, Russian"
+  },
+  {
+    "value": "KOI8_U",
+    "description": "KOI8-U, Ukrainian"
+  },
+  {
+    "value": "MacArabic",
+    "description": "Macintosh Arabic"
+  },
+  {
+    "value": "MacCentralEurope",
+    "description": "Macintosh Latin-2"
+  },
+  {
+    "value": "MacCroatian",
+    "description": "Macintosh Croatian"
+  },
+  {
+    "value": "MacCyrillic",
+    "description": "Macintosh Cyrillic"
+  },
+  {
+    "value": "MacDingbat",
+    "description": "Macintosh Dingbat"
+  },
+  {
+    "value": "MacGreek",
+    "description": "Macintosh Greek"
+  },
+  {
+    "value": "MacHebrew",
+    "description": "Macintosh Hebrew"
+  },
+  {
+    "value": "MacIceland",
+    "description": "Macintosh Iceland"
+  },
+  {
+    "value": "MacRoman",
+    "description": "Macintosh Roman"
+  },
+  {
+    "value": "MacRomania",
+    "description": "Macintosh Romania"
+  },
+  {
+    "value": "MacSymbol",
+    "description": "Macintosh Symbol"
+  },
+  {
+    "value": "MacThai",
+    "description": "Macintosh Thai"
+  },
+  {
+    "value": "MacTurkish",
+    "description": "Macintosh Turkish"
+  },
+  {
+    "value": "MacUkraine",
+    "description": "Macintosh Ukraine"
+  },
+  {
+    "value": "MS874",
+    "description": "Windows Thai"
+  },
+  {
+    "value": "MS932",
+    "description": "Windows Japanese"
+  },
+  {
+    "value": "MS936",
+    "description": "Windows Simplified Chinese"
+  },
+  {
+    "value": "MS949",
+    "description": "Windows Korean"
+  },
+  {
+    "value": "MS950",
+    "description": "Windows Traditional Chinese"
+  },
+  {
+    "value": "MS950_HKSCS",
+    "description": "Windows Traditional Chinese with Hong Kong extensions"
+  },
+  {
+    "value": "PCK",
+    "description": "Solaris version of Shift_JIS"
+  },
+  {
+    "value": "SJIS",
+    "description": "Shift-JIS, Japanese"
+  },
+  {
+    "value": "TIS620",
+    "description": "TIS620, Thai"
+  },
+  {
+    "value": "UnicodeBig",
+    "description": "Sixteen-bit Unicode (or UCS) Transformation Format, big-endian byte order, with byte-order mark"
+  },
+  {
+    "value": "UnicodeBigUnmarked",
+    "description": "Sixteen-bit Unicode (or UCS) Transformation Format, big-endian byte order"
+  },
+  {
+    "value": "UnicodeLittle",
+    "description": "Sixteen-bit Unicode (or UCS) Transformation Format, little-endian byte order, with byte-order mark"
+  },
+  {
+    "value": "UnicodeLittleUnmarked",
+    "description": "Sixteen-bit Unicode (or UCS) Transformation Format, little-endian byte order"
+  },
+  {
+    "value": "UTF_32",
+    "description": "32-bit Unicode (or UCS) Transformation Format, byte order identified by an optional byte-order mark"
+  },
+  {
+    "value": "UTF_32BE",
+    "description": "32-bit Unicode (or UCS) Transformation Format, big-endian byte order"
+  },
+  {
+    "value": "UTF_32BE_BOM",
+    "description": "32-bit Unicode (or UCS) Transformation Format, big-endian byte order, with byte-order mark"
+  },
+  {
+    "value": "UTF_32LE",
+    "description": "32-bit Unicode (or UCS) Transformation Format, little-endian byte order"
+  },
+  {
+    "value": "UTF_32LE_BOM",
+    "description": "32-bit Unicode (or UCS) Transformation Format, little-endian byte order, with byte-order mark"
+  },
+  {
+    "value": "UTF-16",
+    "description": "Sixteen-bit Unicode (or UCS) Transformation Format, byte order identified by an optional byte-order mark"
+  },
+  {
+    "value": "UTF8",
+    "description": "Eight-bit Unicode (or UCS) Transformation Format"
+  },
+  {
+    "value": "x-iso-8859-11",
+    "description": "Latin/Thai Alphabet"
+  },
+  {
+    "value": "x-JIS0208",
+    "description": "JIS X 0208"
+  },
+  {
+    "value": "x-Johab",
+    "description": "Korean, Johab character set"
+  },
+  {
+    "value": "x-windows-iso2022jp",
+    "description": "Variant ISO-2022-JP (MS932 based)"
+  }
+]

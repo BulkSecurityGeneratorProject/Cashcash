@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity CashAccount.
+    -->
+    <changeSet id="2016_06_25_01_added_entity_constraints_CashAccount" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="cash_account"
+                                 constraintName="fk_cashaccount_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="currency_id"
+                                 baseTableName="cash_account"
+                                 constraintName="fk_cashaccount_currency_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_currency"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_account_id"
+                                 baseTableName="cash_account"
+                                 constraintName="fk_cashaccount_parentaccount_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cash_account"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+package com.gagnepain.cashcash.web.rest.errors;
+
+/**
+ * Custom, parameterized exception, which can be translated on the client side.
+ * For example:
+ * <p>
+ * <pre>
+ * throw new CustomParameterizedException(&quot;myCustomError&quot;, &quot;hello&quot;, &quot;world&quot;);
+ * </pre>
+ * <p>
+ * Can be translated with:
+ * <p>
+ * <pre>
+ * "error.myCustomError" :  "The server says {{params[0]}} to {{params[1]}}"
+ * </pre>
+ */
+public class CustomParameterizedException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	private final String message;
+
+	private final String[] params;
+
+	public CustomParameterizedException(final String message, final String... params) {
+		super(message);
+		this.message = message;
+		this.params = params;
+	}
+
+	public ParameterizedErrorDTO getErrorDTO() {
+		return new ParameterizedErrorDTO(message, params);
+	}
+}

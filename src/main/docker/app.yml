@@ -1,0 +1,41 @@
+version: '2'
+services:
+
+  cashcash-app:
+      image: docker-all.binaryisland.lan/cashcash/cashcash:latest
+      environment:
+          - SPRING_PROFILES_ACTIVE=prod
+          - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+      ports:
+          - 18070:8080
+      volumes:
+          - ./config/application-prod.yml:/config/application-prod.yml
+      networks:
+        - cashcash
+
+  cashcash-mysql:
+      image: mysql:5.7.13
+      environment:
+            - MYSQL_RANDOM_ROOT_PASSWORD=yes
+            - MYSQL_ONETIME_PASSWORD=yes
+            - MYSQL_DATABASE=cashcash
+            - MYSQL_USER=cashcashUser
+            - MYSQL_PASSWORD=changeMe
+      ports:
+          - 3306:3306
+      command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8
+      volumes:
+          - cashcash-mysql-data:/var/lib/mysql
+      networks:
+        - cashcash
+
+
+networks:
+
+  cashcash:
+    driver: bridge
+
+
+volumes:
+
+  cashcash-mysql-data:

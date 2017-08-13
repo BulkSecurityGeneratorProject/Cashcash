@@ -1,0 +1,36 @@
+<div>
+    <div class="well">
+        <h2>Flow Graph</h2>
+        <br/>
+    </div>
+    <br/>
+    <jh-alert></jh-alert>
+    <br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">Expense</div>
+        <div class="panel-body">
+            <bar-chart ng-if="$ctrl.expenseGraph" config="$ctrl.expenseGraph.config" series="$ctrl.expenseGraph.series">
+            </bar-chart>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Income</div>
+        <div class="panel-body">
+            <bar-chart ng-if="$ctrl.incomeGraph" config="$ctrl.incomeGraph.config" series="$ctrl.incomeGraph.series">
+            </bar-chart>
+        </div>
+    </div>
+
+
+    <div ng-repeat="chartByAccount in $ctrl.subAccountGraphList" class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <bar-chart config="chartByAccount.config" series="chartByAccount.series">
+                </bar-chart>
+            </div>
+        </div>
+    </div>
+
+</div>

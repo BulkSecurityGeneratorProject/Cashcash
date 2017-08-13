@@ -1,0 +1,1 @@
+export default function treeDndNodeHandle() {    return {        restrict: 'A',        scope: true,        link: function (scope, element, attrs) {            scope.$type = 'TreeDnDNodeHandle';            if (scope.$class.handle) {                element.addClass(scope.$class.handle);            }        }    };};

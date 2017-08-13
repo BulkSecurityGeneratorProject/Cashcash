@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!--
+        Added the trigger to prevent update of UserId.
+    -->
+    <changeSet id="2017_06_16_00_addTriggerToPreventUpdateOfUserId" author="gagnepain">
+        <sqlFile path="classpath:config/liquibase/changelog/2017_06_16_00_addTriggerToPreventUpdateOfUserId.sql"
+                 splitStatements="true"
+                 dbms="postgresql, mysql, oracle"
+                 endDelimiter="\$\$"
+        />
+        <rollback>
+            DROP TRIGGER trigger_cash_csv_config_prevent_user_id_update ON cash_csv_config;
+            DROP TRIGGER trigger_cash_split_sum_prevent_user_id_update ON cash_split_sum;
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

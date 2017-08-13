@@ -1,0 +1,77 @@
+<script type="text/ng-template" id="tree-dnd-template-render.html">
+    <div ng-class="(treeData.length) ? '' : 'list-group-item'">
+        <ul tree-dnd-nodes style="min-height: 100px">
+            <li tree-dnd-node="node" ng-repeat="node in treeData track by node.__hashKey__"
+                ng-show="node.__visible__"
+                ng-include="'tree-dnd-template-fetch.html'"></li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/ng-template" id="tree-dnd-template-fetch.html">
+    <div class="list-group-item text-info"
+         ng-class="(node.__selected__ ? 'list-group-item-success ':' ') + $node_class"
+         ng-click="onClick(node)"
+         ng-style="expandingProperty.cellStyle || {}">
+        <a class="btn btn-default" aria-label="Justify" type="button" tree-dnd-node-handle>
+            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span> </a>
+
+        {{node[expandingProperty.field] || node[expandingProperty]}}
+
+        <span ng_class="$icon_class" ng-click="toggleExpand(node)"></span>
+
+        <div class="pull-right">
+            <span ng-repeat="col in colDefinitions" ng-class="col.cellClass" ng-style="col.cellStyle"
+                  compile="col.cellTemplate">
+               {{node[col.field]}}{{$last ? '' : ' - '}}
+            </span>
+        </div>
+    </div>
+    <ul tree-dnd-nodes>
+        <li tree-dnd-node="node" ng-repeat="node in node.__children__ track by node.__hashKey__"
+            ng-show="node.__visible__"
+            ng-include="'tree-dnd-template-fetch.html'"></li>
+    </ul>
+</script>
+
+<form name="editForm" role="form" novalidate ng-submit="$ctrl.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="$ctrl.clear()">&times;</button>
+        <h4 class="modal-title" id="myCashAccountLabel">Organize CashAccounts</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <tree-dnd
+                        tree-data="$ctrl.tree_data"
+                        tree-control="$ctrl.my_tree"
+                        primary-key="id"
+
+                        column-defs="$ctrl.col_defs"
+                        expand-on="$ctrl.expanding_property"
+
+                        enable-drag="true"
+                        enable-drop="true"
+
+                        template-url="tree-dnd-template-render.html"
+
+                        icon-leaf="fa fa-fw"
+                        icon-expand="fa fa-chevron-down fa-fw"
+                        icon-collapse="fa fa-chevron-right fa-fw">
+                </tree-dnd>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

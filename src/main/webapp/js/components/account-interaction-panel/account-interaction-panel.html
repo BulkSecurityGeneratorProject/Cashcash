@@ -1,0 +1,24 @@
+<div class="btn-group flex-btn-group-container">
+    <button type="submit"
+            ui-sref="cash-account-delete({id:$ctrl.cashAccount.id})"
+            class="btn btn-danger btn-sm"
+            ng-if="$ctrl.isDeletable()">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <button type="submit"
+            ui-sref="cash-account-edit({id:$ctrl.cashAccount.id})"
+            class="btn btn-primary btn-sm"
+            ng-if="$ctrl.isEditable()">
+        <span class="glyphicon glyphicon-pencil"></span>
+    </button>
+    <button type="submit"
+            ui-sref="cash-transaction({accountIdList:$ctrl.cashAccount.id})"
+            class="btn btn-info btn-sm">
+        <span class="glyphicon glyphicon-eye-open"></span>
+    </button>
+    <button type="submit"
+            ui-sref="cash-account-new({parentId:$ctrl.cashAccount.id})"
+            class="btn btn-success btn-sm">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+</div>

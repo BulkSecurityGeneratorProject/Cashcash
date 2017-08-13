@@ -1,0 +1,85 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="$ctrl.clear()">&times;</button>
+    <h4 class="modal-title" id="myCashTransactionLabel" translate="cashcashApp.cashTransaction.home.importLabel">Import
+        file</h4>
+</div>
+<div class="modal-body">
+    <jh-alert-error></jh-alert-error>
+
+    <div>
+        <form name="myForm">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label class="control-label">Account Detection</label>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-model="$ctrl.manualDetection" uib-btn-checkbox>
+                        <label ng-show="!$ctrl.manualDetection">Auto</label>
+                        <label ng-show="$ctrl.manualDetection">Manual</label>
+                    </button>
+                </div>
+                <div class="col-sm-8" ng-show="$ctrl.manualDetection">
+                    <input type="text"
+                           id="field_Account"
+                           ng-model="$ctrl.account"
+                           placeholder="Account"
+                           uib-typeahead="cashAccount as cashAccount.name for cashAccount in $ctrl.cashAccounts | filter:{name:$viewValue}"
+                           class="form-control"
+                           typeahead-show-hint="true"
+                           typeahead-min-length="0"
+                           autocomplete="off"
+                           ng-required="manualDetection">
+                </div>
+            </div>
+            <button type="file" class="btn btn-default"
+                    ngf-select
+                    ng-model="$ctrl.item"
+                    name="file"
+                    accept=".ofx,.json,.csv"
+                    ngf-max-size="5MB"
+                    required
+                    ngf-model-invalid="errorFiles"
+                    ng-show="!$ctrl.item">
+                <span class="glyphicon glyphicon-plus"></span>Add File
+            </button>
+            <div ng-show="$ctrl.item">
+                <div class="row">
+                    <label class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                        <p><strong>{{ $ctrl.item.name }}</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">Size</label>
+
+                    <div class="col-sm-10">
+                        <p>{{ $ctrl.item.size/ 1000000|number:2 }} MB</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 control-label">Progress</label>
+
+                    <div class="col-sm-10">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar"
+                                 ng-style="{ 'width': $ctrl.progressPercentage + '%' }"
+                                 ng-class="{ 'progress-bar-success' : $ctrl.isSuccess , 'progress-bar-info': $ctrl.isImporting, 'progress-bar-danger': $ctrl.isError}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">
+        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+    </button>
+    <button ng-show="$ctrl.item" type="button" class="btn btn-success" ng-click="$ctrl.upload($ctrl.item)"
+            ng-disabled="$ctrl.item.isReady || $ctrl.item.isUploading || $ctrl.item.isSuccess">
+        <span class="glyphicon glyphicon-upload"></span> Upload
+    </button>
+</div>
+

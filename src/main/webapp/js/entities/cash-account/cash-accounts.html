@@ -1,0 +1,48 @@
+<div>
+    <div class="well">
+        <h2>Cash Accounts</h2>
+        <br/>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ui-sref="cash-account-organize">
+                        <span class="fa fa-sitemap"></span>
+                        <span>Organize accounts</span>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ui-sref="cash-account-importFile">
+                        <span class="glyphicon glyphicon-upload"></span>
+                        <span>Import accounts</span>
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ng-click="$ctrl.exportFile()">
+                        <span class="glyphicon glyphicon-download"></span>
+                        <span>Export accounts</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive">
+        <tree-dnd
+                tree-data="$ctrl.tree_data"
+                tree-control="$ctrl.my_tree"
+                primary-key="id"
+
+                column-defs="$ctrl.col_defs"
+                expand-on="$ctrl.expanding_property"
+
+                enable-drag="false"
+                enable-drop="false"
+
+                icon-leaf="fa fa-fw"
+                icon-expand="fa fa-chevron-down fa-fw"
+                icon-collapse="fa fa-chevron-right fa-fw">
+        </tree-dnd>
+    </div>
+</div>

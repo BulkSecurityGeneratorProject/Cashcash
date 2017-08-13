@@ -1,0 +1,81 @@
+package com.gagnepain.cashcash.config;
+
+import java.util.Set;
+import java.util.SortedSet;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.metamodel.EntityType;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.Assert;
+
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.ehcache.InstrumentedEhcache;
+
+@SuppressWarnings("unused")
+@Configuration
+@EnableCaching
+@AutoConfigureAfter(value = { MetricsConfiguration.class, DatabaseConfiguration.class })
+public class CacheConfiguration {
+	private final Logger log = LoggerFactory.getLogger(CacheConfiguration.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Inject
+	private MetricRegistry metricRegistry;
+
+	private net.sf.ehcache.CacheManager cacheManager;
+
+	@PreDestroy
+	public void destroy() {
+		log.info("Remove Cache Manager metrics");
+		final SortedSet<String> names = metricRegistry.getNames();
+		names.forEach(metricRegistry::remove);
+		log.info("Closing Cache Manager");
+		cacheManager.shutdown();
+	}
+
+	@Bean
+	public CacheManager cacheManager(final JHipsterProperties jHipsterProperties) {
+		log.debug("Starting Ehcache");
+		cacheManager = net.sf.ehcache.CacheManager.create();
+		cacheManager.getConfiguration()
+				.setMaxBytesLocalHeap(jHipsterProperties.getCache()
+						.getEhcache()
+						.getMaxBytesLocalHeap());
+		log.debug("Registering Ehcache Metrics gauges");
+		final Set<EntityType<?>> entities = entityManager.getMetamodel()
+				.getEntities();
+		for (final EntityType<?> entity : entities) {
+
+			String name = entity.getName();
+			if (name == null || entity.getJavaType() != null) {
+				name = entity.getJavaType()
+						.getName();
+			}
+			Assert.notNull(name, "entity cannot exist without a identifier");
+
+			final net.sf.ehcache.Cache cache = cacheManager.getCache(name);
+			if (cache != null) {
+				cache.getCacheConfiguration()
+						.setTimeToLiveSeconds(jHipsterProperties.getCache()
+								.getTimeToLiveSeconds());
+				final net.sf.ehcache.Ehcache decoratedCache = InstrumentedEhcache.instrument(metricRegistry, cache);
+				cacheManager.replaceCacheWithDecoratedCache(cache, decoratedCache);
+			}
+		}
+		final EhCacheCacheManager ehCacheManager = new EhCacheCacheManager();
+		ehCacheManager.setCacheManager(cacheManager);
+		return ehCacheManager;
+	}
+}
