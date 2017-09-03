@@ -5,8 +5,18 @@
 
 The goal of this project is to be able to manage and visualize your money through a self-hosted service.
 
+## Features
+
+- Basic concept of accounting:
+  - Every transaction is a flow of money from one account to another.
+  - All the accounts belong to the following categories: income, expense, equity, assets, liabilities. The [documentation](https://www.gnucash.org/docs/v2.6/C/gnucash-guide/accts-concepts1.html) of GnuCash explains it quite well.
+- Multi-currencies support
+- .csv, .ofx and .json import
+- Graph of your cash balance: How your assets and liabilities evolve through time?
+- Graph of your cash flow: What are your incomes and expenses per month?
+
 ## Build for development
-First of all, this application was first generated using JHipster scaffolding tool (documentation here [https://jhipster.github.io](https://jhipster.github.io)) but then evolve freely without using the tool.
+First of all, this application was first generated using JHipster scaffolding tool (documentation here [jhipster.github.io](https://jhipster.github.io)) but then evolve freely without using the tool.
 
 To build your application, simply launch the maven command:
 
@@ -26,7 +36,9 @@ Several steps are needed to start the development environnment:
 
     yarn start
 
-Then navigate to [http://localhost:8081](http://localhost:8081) in your browser.
+- Then navigate to [http://localhost:8081](http://localhost:8081) in your browser.
+- Login with the login/password user/user.
+
 
 ## Build for production
 To build your application, simply launch the maven command:
@@ -58,6 +70,10 @@ Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
     set password = password("123456");
 
+- Then navigate to [http://localhost:8081](http://localhost:8081) in your browser.
+- Login with the login/password user/user.
+
+- Warning: Several user are created on startup. If you don't want them to be available, connect into the database and modify the column activated to 0 in the table jhi_user.
 
 ## License
 
