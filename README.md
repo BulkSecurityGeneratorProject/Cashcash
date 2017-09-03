@@ -1,18 +1,18 @@
-[![Logo][cashcash-image]]
+![Logo][cashcash-image]
 # Cashcash
 
 ## Purpose
 
 The goal of this project is to be able to manage and visualize your money through a self-hosted service.
 
-### Build for development
+## Build for development
 First of all, this application was first generated using JHipster scaffolding tool (documentation here [https://jhipster.github.io](https://jhipster.github.io)) but then evolve freely without using the tool.
 
 To build your application, simply launch the maven command:
 
     mvn install
 
-### Run for development
+## Run for development
 
 Several steps are needed to start the development environnment:
 - Start the mysql database by running one of the docker compose file in src/main/docker:
