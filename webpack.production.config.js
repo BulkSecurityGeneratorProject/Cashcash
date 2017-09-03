@@ -66,7 +66,8 @@ module.exports = {
         new webpack.ProvidePlugin({
             "$": "jquery",
             "jQuery": "jquery",
-            "window.jQuery": "jquery"
+            "window.jQuery": "jquery",
+            "Selectize": "selectize"
         }),
         new webpack.BannerPlugin("Copyright Samuel GAGNEPAIN"),
         new HtmlWebpackPlugin({

@@ -1,6 +1,6 @@
 package com.gagnepain.cashcash.service;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gagnepain.cashcash.domain.CashAccount;
 import com.gagnepain.cashcash.domain.CashCurrency;
 import com.gagnepain.cashcash.domain.User;
-import com.gagnepain.cashcash.domain.enumeration.CashAccountType;
 import com.gagnepain.cashcash.domain.exception.BusinessException;
 import com.gagnepain.cashcash.repository.CashAccountRepository;
+import com.gagnepain.cashcash.service.util.CashAccountGenerator;
 import com.gagnepain.cashcash.service.validator.CashAccountValidator;
 import com.gagnepain.cashcash.web.rest.errors.CashError;
 
@@ -170,16 +170,7 @@ public class CashAccountService extends AbstractCashResourceService<CashAccount>
 		}
 		final CashCurrency cashCurrency = cashCurrencyService.findOne(CurrencyUnit.EUR.getCode());
 
-		final List<CashAccount> cashAccountList = new ArrayList<>();
-		for (final CashAccountType accountType : CashAccountType.values()) {
-			final CashAccount cashAccount = new CashAccount();
-			cashAccount.setName(accountType.name());
-			cashAccount.setType(accountType);
-			cashAccount.setUser(loggedUser);
-			cashAccount.setCurrency(cashCurrency);
-			cashAccount.setLevel(1);
-			cashAccountList.add(cashAccount);
-		}
+		final Collection<CashAccount> cashAccountList = CashAccountGenerator.generateInitialAccounts(loggedUser, cashCurrency);
 		return cashAccountRepository.save(cashAccountList);
 	}
 

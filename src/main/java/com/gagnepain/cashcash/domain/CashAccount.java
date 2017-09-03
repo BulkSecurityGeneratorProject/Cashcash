@@ -1,13 +1,18 @@
 package com.gagnepain.cashcash.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -93,13 +98,18 @@ public class CashAccount extends CashOwnedResource {
 			insertable = false)
 	private Long currencyId;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private CashAccount parentAccount;
 
 	@Column(name = "parent_account_id",
 			updatable = false,
 			insertable = false)
 	private Long parentAccountId;
+
+	@OneToMany(cascade = CascadeType.PERSIST,
+			mappedBy = "parentAccount",
+			fetch = FetchType.LAZY)
+	private Set<CashAccount> childAccountList;
 
 	@Override
 	public List<CashOwnedResource> getOwnedResources() {
@@ -223,6 +233,8 @@ public class CashAccount extends CashOwnedResource {
 
 	public void setParentAccount(final CashAccount parentAccount) {
 		this.parentAccount = parentAccount;
+		this.parentAccount.getChildAccountList()
+				.add(this);
 	}
 
 	public Long getParentAccountId() {
@@ -247,6 +259,17 @@ public class CashAccount extends CashOwnedResource {
 
 	public void setCurrencyId(final Long currencyId) {
 		this.currencyId = currencyId;
+	}
+
+	public Set<CashAccount> getChildAccountList() {
+		if (childAccountList == null) {
+			childAccountList = new HashSet<>();
+		}
+		return childAccountList;
+	}
+
+	public void setChildAccountList(final Set<CashAccount> childAccountList) {
+		this.childAccountList = childAccountList;
 	}
 
 	@Override
