@@ -44,9 +44,12 @@ Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 - Change the password of cashcashUser in src/main/docker/app.yml and src/main/docker/config/application-prod.yml.
     
 - Start the app by running one of the docker compose file in src/main/docker:
+
+
     docker-compose -f ./app.yml up
     
-- Change the root password of mysql
+- Change the root password of mysql:
+
 
     mysql --host=192.168.1.2 --port=3306 -u root  -p
 
