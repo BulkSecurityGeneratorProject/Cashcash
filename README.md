@@ -39,10 +39,26 @@ To ensure everything worked, run:
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
+## Run for production
+
+- Change the password of cashcashUser in src/main/docker/app.yml and src/main/docker/config/application-prod.yml.
+    
+- Start the app by running one of the docker compose file in src/main/docker:
+    docker-compose -f ./app.yml up
+    
+- Change the root password of mysql
+
+    mysql --host=192.168.1.2 --port=3306 -u root  -p
+
+    mysql> use mysql;
+    ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+
+    set password = password("123456");
+
 
 ## License
 
-This project is under the MIT License. See the [LICENSE](https://github.com/Winbee/Cashcash/blob/master/LICENSE) file for the full license text.
+This project is under the MIT License. See the [LICENCE](https://github.com/Winbee/Cashcash/blob/master/LICENCE) file for the full license text.
 
 
 [cashcash-image]: https://cdn.rawgit.com/Winbee/Cashcash/01e57c27/src/main/webapp/resources/images/cashcash.png
