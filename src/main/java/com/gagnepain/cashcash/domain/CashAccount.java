@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gagnepain.cashcash.domain.enumeration.CashAccountType;
 
 /**
@@ -99,6 +101,7 @@ public class CashAccount extends CashOwnedResource {
 	private Long currencyId;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonBackReference
 	private CashAccount parentAccount;
 
 	@Column(name = "parent_account_id",
@@ -109,6 +112,7 @@ public class CashAccount extends CashOwnedResource {
 	@OneToMany(cascade = CascadeType.PERSIST,
 			mappedBy = "parentAccount",
 			fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private Set<CashAccount> childAccountList;
 
 	@Override
