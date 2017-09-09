@@ -61,6 +61,10 @@ export default function CashAccount($resource, DateUtils, CacheFactory) {
         'save': {
             method: 'POST',
             transformResponse: invalidateCache
+        },
+        'delete': {
+            method: 'DELETE',
+            transformResponse: invalidateCache
         }
     });
 };

@@ -62,6 +62,10 @@ export default function CashTransaction($resource, DateUtils, CacheFactory) {
             method: 'POST',
             isArray: true,
             transformResponse: invalidateCache
+        },
+        'delete': {
+            method: 'DELETE',
+            transformResponse: invalidateCache
         }
     });
 };
