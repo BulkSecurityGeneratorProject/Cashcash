@@ -34,7 +34,7 @@ import com.gagnepain.cashcash.web.rest.errors.CashError;
  * Service Implementation for managing CashSplitCumulative.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashSplitCumulativeService {
 	private final Logger log = LoggerFactory.getLogger(CashSplitCumulativeService.class);
 

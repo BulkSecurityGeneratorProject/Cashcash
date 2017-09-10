@@ -18,7 +18,7 @@ import com.gagnepain.cashcash.service.util.SupportedCurrencies;
  * Service Implementation for managing CashCurrency.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashCurrencyService {
 	@Inject
 	private CashCurrencyRepository cashCurrencyRepository;

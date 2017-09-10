@@ -24,7 +24,7 @@ import com.gagnepain.cashcash.repository.CashSplitSumRepository;
  * Service Implementation for managing CashSplitSum.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashSplitSumService extends AbstractCashResourceService<CashSplitSum> {
 	@Inject
 	private CashSplitSumRepository cashSplitSumRepository;

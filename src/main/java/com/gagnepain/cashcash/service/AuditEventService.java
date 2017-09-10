@@ -20,7 +20,7 @@ import com.gagnepain.cashcash.repository.PersistenceAuditEventRepository;
  * </p>
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class AuditEventService {
 	private final PersistenceAuditEventRepository persistenceAuditEventRepository;
 

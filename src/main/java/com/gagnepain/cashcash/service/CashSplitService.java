@@ -32,7 +32,7 @@ import com.gagnepain.cashcash.web.rest.errors.CashError;
  * Service Implementation for managing CashSplit.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashSplitService extends AbstractCashResourceService<CashSplit> {
 	@Inject
 	private CashSplitRepository cashSplitRepository;

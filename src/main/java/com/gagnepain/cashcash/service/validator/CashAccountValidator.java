@@ -44,19 +44,19 @@ public class CashAccountValidator extends AbstractValidator<CashAccount> {
 	private int MAX_CASH_ACCOUNT_LEVEL;
 
 	public Optional<CashError> validateForCreation(final List<CashAccount> cashAccountList) {
+		for (final CashAccount cashAccount : cashAccountList) {
+			final Optional<CashError> cashError = validateForCreation(cashAccount);
+			if (cashError.isPresent()) {
+				return cashError;
+			}
+		}
+
 		final User loggedUser = userService.getUserWithoutAuthorities();
 		long existingAccountNb = cashAccountRepository.countByUser(loggedUser);
 
 		if (cashAccountList.size() + existingAccountNb > MAX_CASH_ACCOUNT_NB) {
 			return Optional.of(
 					new CashError("tooMuchCashAccount", "Impossible to have more than " + MAX_CASH_ACCOUNT_NB + " cash accounts."));
-		}
-
-		for (final CashAccount cashAccount : cashAccountList) {
-			final Optional<CashError> cashError = validateForCreation(cashAccount);
-			if (cashError.isPresent()) {
-				return cashError;
-			}
 		}
 
 		return Optional.empty();

@@ -27,7 +27,7 @@ import io.jsonwebtoken.lang.Collections;
  * Service Implementation for managing CashTransaction.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashTransactionService extends AbstractCashResourceService<CashTransaction> {
 	@Inject
 	private CashTransactionRepository cashTransactionRepository;

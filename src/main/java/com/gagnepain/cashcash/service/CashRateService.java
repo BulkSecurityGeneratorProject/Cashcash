@@ -17,7 +17,7 @@ import com.gagnepain.cashcash.web.rest.dto.ExternalCashRateDTO;
  * Service Implementation for managing CashRate.
  */
 @Service
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class CashRateService {
 	@Inject
 	private CashRateRepository cashRateRepository;
