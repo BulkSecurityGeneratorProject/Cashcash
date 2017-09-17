@@ -20,16 +20,11 @@
                     </button>
                 </div>
                 <div class="col-sm-8" ng-show="$ctrl.manualDetection">
-                    <input type="text"
-                           id="field_Account"
-                           ng-model="$ctrl.account"
-                           placeholder="Account"
-                           uib-typeahead="cashAccount as cashAccount.name for cashAccount in $ctrl.cashAccounts | filter:{name:$viewValue}"
-                           class="form-control"
-                           typeahead-show-hint="true"
-                           typeahead-min-length="0"
-                           autocomplete="off"
-                           ng-required="manualDetection">
+                    <selectize
+                            placeholder="Account"
+                            config="$ctrl.selectizeAccountConfig"
+                            ng-model="$ctrl.selectedAccountId"
+                            options="$ctrl.cashAccounts"></selectize>
                 </div>
             </div>
             <button type="file" class="btn btn-default"

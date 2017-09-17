@@ -1,10 +1,9 @@
 import _ from "lodash";
 
 class CashTransactionNewListDialogController {
-    constructor(CashTransactionUtils, cashTransactionList, CashCurrency, CashAccount, CashTransaction) {
+    constructor(CashTransactionUtils, CashCurrency, CashAccount, CashTransaction) {
         "ngInject";
         this.CashTransactionUtils = CashTransactionUtils;
-        this.cashTransactionList = cashTransactionList;
         this.CashCurrency = CashCurrency;
         this.CashAccount = CashAccount;
         this.CashTransaction = CashTransaction;
@@ -47,6 +46,7 @@ class CashTransactionNewListDialogController {
 export default {
     bindings: {
         resolve: '<',
+        cashTransactionList: '<',
         close: '&',
         dismiss: '&'
     },

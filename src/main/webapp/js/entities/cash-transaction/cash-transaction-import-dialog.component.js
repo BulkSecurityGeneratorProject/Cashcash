@@ -13,6 +13,19 @@ class CashTransactionImportController {
     $onInit() {
         this.manualDetection = false;
         this.cashAccounts = this.CashAccount.query();
+        this.selectizeAccountConfig = {
+            maxItems: 1,
+            valueField: 'id',
+            labelField: 'name',
+            searchField: ['name'],
+            optgroupField: 'type',
+            optgroups: [{value: 'ASSET'},
+                {value: 'LIABILITY'},
+                {value: 'EQUITY'},
+                {value: 'INCOME'},
+                {value: 'EXPENSE'}],
+            optgroupLabelField: 'value'
+        };
     }
 
 
@@ -27,7 +40,7 @@ class CashTransactionImportController {
         _.forEach(data, function (value) {
             const tranformedObj = this.transformResponse(value);
             transformedList.push(tranformedObj);
-        });
+        }.bind(this));
         return transformedList;
     }
 
@@ -58,7 +71,7 @@ class CashTransactionImportController {
         this.isError = false;
         this.isImporting = true;
         if (this.manualDetection) {
-            this.accountId = this.account.id;
+            this.accountId = this.selectedAccountId;
         } else {
             this.accountId = "";
         }

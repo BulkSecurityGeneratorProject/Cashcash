@@ -132,7 +132,7 @@ export default function stateConfig($stateProvider) {
                     size: 'md'
                 }).result.then(function (result) {
                     if (result) {
-                        $state.go('cash-transaction-newList', result, {reload: true});
+                        $state.go('cash-transaction-newList', {cashTransactionList: result}, {reload: true});
                     } else {
                         $state.go('^');
                     }
