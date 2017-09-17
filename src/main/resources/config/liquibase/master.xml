@@ -24,4 +24,5 @@
     <include file="config/liquibase/changelog/2017_05_24_01_added_entity_CashRate.xml" />
     <include file="config/liquibase/changelog/2017_06_16_00_addTriggerToPreventUpdateOfUserId.xml" />
     <include file="config/liquibase/changelog/2017_06_17_00_added_index.xml" />
+    <include file="config/liquibase/changelog/2017_09_17_00_modify_column_size_CashCsvConfig.xml" />
 </databaseChangeLog>
