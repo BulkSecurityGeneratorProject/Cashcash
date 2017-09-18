@@ -28,20 +28,23 @@ class CashTransactionImportController {
         };
     }
 
-
     transformResponse(data) {
-        data = angular.fromJson(data);
-        data.transactionDate = this.DateUtils.convertDateTimeFromServer(data.transactionDate);
-        return new this.CashTransaction(data);
+        if (data) {
+            data = angular.fromJson(data);
+            data.transactionDate = this.DateUtils.convertDateTimeFromServer(data.transactionDate);
+        }
+        return data;
     }
 
     transformResponseList(data) {
-        const transformedList = [];
-        _.forEach(data, function (value) {
-            const tranformedObj = this.transformResponse(value);
-            transformedList.push(tranformedObj);
-        }.bind(this));
-        return transformedList;
+        if (data) {
+            data = angular.fromJson(data);
+
+            _.forEach(data, function (item) {
+                this.transformResponse(item);
+            }.bind(this));
+        }
+        return data;
     }
 
     onImportSuccess(resp) {

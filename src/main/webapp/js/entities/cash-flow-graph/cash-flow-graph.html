@@ -23,7 +23,7 @@
     </div>
 
 
-    <div ng-repeat="chartByAccount in $ctrl.subAccountGraphList" class="row">
+    <div ng-repeat="chartByAccount in $ctrl.subAccountGraphList track by $index" class="row">
         <div class="panel panel-default">
             <div class="panel-heading"></div>
             <div class="panel-body">

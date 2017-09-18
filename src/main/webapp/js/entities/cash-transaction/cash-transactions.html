@@ -68,12 +68,12 @@
                 <td translate="{{'cashcashApp.CashTransactionType.' + cashTransaction.type}}">{{cashTransaction.type}}
                 </td>
                 <td ng-class="$ctrl.increaseAssets(cashTransaction) ? 'bg-success' : 'bg-danger'">
-                    {{$ctrl.getPositiveSplit(cashTransaction).amount + ' ' +
-                    $ctrl.getPositiveSplit(cashTransaction).currency.code}}
+                    {{$ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).amount + ' ' +
+                    $ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).currency.code}}
                 </td>
-                <td><a ng-click="$ctrl.addAccountFilter($ctrl.getNegativeSplit(cashTransaction).account.id)">{{$ctrl.getNegativeSplit(cashTransaction).account.name}}</a>
+                <td><a ng-click="$ctrl.addAccountFilter($ctrl.CashTransactionUtils.getNegativeSplit(cashTransaction).account.id)">{{$ctrl.CashTransactionUtils.getNegativeSplit(cashTransaction).account.name}}</a>
                 </td>
-                <td><a ng-click="$ctrl.addAccountFilter($ctrl.getPositiveSplit(cashTransaction).account.id)">{{$ctrl.getPositiveSplit(cashTransaction).account.name}}</a>
+                <td><a ng-click="$ctrl.addAccountFilter($ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).account.id)">{{$ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).account.name}}</a>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

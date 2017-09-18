@@ -51,7 +51,7 @@ export default class CashTransactionUtils {
     getExchangeAccount(cashTransaction) {
         const account = _.map(cashTransaction.splits, 'account');
 
-        const exchangeIds = _.filter(array, function (x, i, array) {
+        const exchangeIds = _.filter(account, function (x, i, array) {
             return _.includes(array, x, i + 1)
         });
 
@@ -63,8 +63,8 @@ export default class CashTransactionUtils {
         let inSplit;
         if (cashTransaction.splits.length === 2) {
             // Basic transaction
-            inSplit = getPositiveSplit(cashTransaction);
-            outSplit = getNegativeSplit(cashTransaction);
+            inSplit = this.getPositiveSplit(cashTransaction);
+            outSplit = this.getNegativeSplit(cashTransaction);
 
             cashTransaction.outAccount = outSplit.account;
             if (outSplit.account) {
@@ -89,11 +89,11 @@ export default class CashTransactionUtils {
 
         } else if (cashTransaction.splits.length === 4) {
             // Exchange transaction
-            const exchangeAccount = getExchangeAccount(cashTransaction);
-            inSplit = getPositiveSplitWithoutThisAccount(cashTransaction, exchangeAccount.id);
-            outSplit = getNegativeSplitWithoutThisAccount(cashTransaction, exchangeAccount.id);
-            const outToExchangeSplit = getPositiveSplitWithThisAccount(cashTransaction, exchangeAccount.id);
-            const exchangeToInSplit = getNegativeSplitWithThisAccount(cashTransaction, exchangeAccount.id);
+            const exchangeAccount = this.getExchangeAccount(cashTransaction);
+            inSplit = this.getPositiveSplitWithoutThisAccount(cashTransaction, exchangeAccount.id);
+            outSplit = this.getNegativeSplitWithoutThisAccount(cashTransaction, exchangeAccount.id);
+            const outToExchangeSplit = this.getPositiveSplitWithThisAccount(cashTransaction, exchangeAccount.id);
+            const exchangeToInSplit = this.getNegativeSplitWithThisAccount(cashTransaction, exchangeAccount.id);
 
             cashTransaction.outAccount = outSplit.account;
             if (outSplit.account) {
@@ -116,8 +116,8 @@ export default class CashTransactionUtils {
             cashTransaction.exchangeAccount = exchangeAccount;
             cashTransaction.inSplitId = inSplit.id;
             cashTransaction.outSplitId = outSplit.id;
-            cashTransaction.outToExchangeSplitId = null;
-            cashTransaction.exchangeToInSplitId = null;
+            cashTransaction.outToExchangeSplitId = outToExchangeSplit.id;
+            cashTransaction.exchangeToInSplitId = exchangeToInSplit.id;
         }
     };
 

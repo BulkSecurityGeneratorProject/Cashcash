@@ -1,16 +1,16 @@
 <div class="panel panel-default">
     <div class="panel-body">
 
-        <div class="row" ng-show="$ctrl.isImportPanel">
+        <div class="row" ng-if="$ctrl.isImportPanel">
             <div class="col-lg-1">
                 <div class="form-group">
                     <div class="input-group">
                         <div type="button" class="btn btn-primary"
                              ng-model="$ctrl.cashTransaction.toImport"
                              uib-btn-checkbox>
-                            <i ng-show="$ctrl.cashTransaction.toImport"
+                            <i ng-if="$ctrl.cashTransaction.toImport"
                                class="glyphicon glyphicon-check"></i>
-                            <i ng-show="!$ctrl.cashTransaction.toImport"
+                            <i ng-if="!$ctrl.cashTransaction.toImport"
                                class="glyphicon glyphicon-unchecked"></i>
                         </div>
                     </div>
@@ -33,19 +33,19 @@
                                placeholder="description"
                                required ng-minlength="2"/>
                     </div>
-                    <div ng-show="editForm.description.$invalid">
+                    <div ng-if="editForm.description.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.description.$error.required">
+                           ng-if="editForm.description.$error.required">
                             This field is required.
                         </p>
 
                         <p class="help-block"
-                           ng-show="editForm.description.$error.minlength" translate-value-min="2">
+                           ng-if="editForm.description.$error.minlength" translate-value-min="2">
                             This field is required to be at least 2 characters.
                         </p>
 
                         <p class="help-block"
-                           ng-show="editForm.description.$error.maxlength">
+                           ng-if="editForm.description.$error.maxlength">
                             This field cannot be longer than 100 characters.
                         </p>
                     </div>
@@ -71,14 +71,14 @@
                                placeholder="transactionDate"
                                required/>
                     </div>
-                    <div ng-show="editForm.transactionDate.$invalid">
+                    <div ng-if="editForm.transactionDate.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.transactionDate.$error.required">
+                           ng-if="editForm.transactionDate.$error.required">
                             This field is required.
                         </p>
 
                         <p class="help-block"
-                           ng-show="editForm.transactionDate.$error.ZonedDateTimelocal">
+                           ng-if="editForm.transactionDate.$error.ZonedDateTimelocal">
                             This field should be a date and time.
                         </p>
                     </div>
@@ -98,9 +98,9 @@
                                 options="$ctrl.cashTransactionTypes"
                                 required></selectize>
                     </div>
-                    <div ng-show="editForm.type.$invalid">
+                    <div ng-if="editForm.type.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.type.$error.required">
+                           ng-if="editForm.type.$error.required">
                             This field is required.
                         </p>
                     </div>
@@ -136,9 +136,9 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="editForm.amount.$invalid">
+                    <div ng-if="editForm.amount.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.amount.$error.required">
+                           ng-if="editForm.amount.$error.required">
                             This field is required.
                         </p>
                     </div>
@@ -154,15 +154,15 @@
                             ng-model="$ctrl.cashTransaction.multicurrency"
                             placeholder="multicurrency"
                             uib-btn-checkbox><i class="fa fa-fw fa-check-square-o"
-                                                ng-show="$ctrl.cashTransaction.multicurrency"/> <i
-                            class="fa fa-fw fa-square-o" ng-show="!$ctrl.cashTransaction.multicurrency"/>Multicurrency
+                                                ng-if="$ctrl.cashTransaction.multicurrency"/> <i
+                            class="fa fa-fw fa-square-o" ng-if="!$ctrl.cashTransaction.multicurrency"/>Multicurrency
                     </button>
                 </div>
             </div>
 
         </div>
 
-        <div class="row" ng-show="$ctrl.cashTransaction.multicurrency">
+        <div class="row" ng-if="$ctrl.cashTransaction.multicurrency">
 
             <div class="col-lg-6">
                 <div class="form-group">
@@ -220,9 +220,9 @@
                                 ng-model="$ctrl.cashTransaction.outAccountId"
                                 options="$ctrl.cashAccounts"></selectize>
                     </div>
-                    <div ng-show="editForm.outAccount.$invalid">
+                    <div ng-if="editForm.outAccount.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.outAccount.$error.required">
+                           ng-if="editForm.outAccount.$error.required">
                             This field is required.
                         </p>
                     </div>
@@ -240,9 +240,9 @@
                                 ng-model="$ctrl.cashTransaction.inAccountId"
                                 options="$ctrl.cashAccounts"></selectize>
                     </div>
-                    <div ng-show="editForm.inAccount.$invalid">
+                    <div ng-if="editForm.inAccount.$invalid">
                         <p class="help-block"
-                           ng-show="editForm.inAccount.$error.required">
+                           ng-if="editForm.inAccount.$error.required">
                             This field is required.
                         </p>
                     </div>

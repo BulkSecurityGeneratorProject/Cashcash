@@ -33,15 +33,15 @@
         </dd>
         <dt><span>Amount</span></dt>
         <dd ng-class="increaseAssets() ? 'bg-success' : 'bg-danger'">
-            <span>{{$ctrl.getPositiveSplit().amount}}</span>
+            <span>{{$ctrl.CashTransactionUtils.getPositiveSplit().amount}}</span>
         </dd>
         <dt><span>OutAccount</span></dt>
         <dd>
-            <a ui-sref="cash-account-detail({id:$ctrl.getNegativeSplit().account.id})">{{$ctrl.getNegativeSplit().account.name}}</a>
+            <a ui-sref="cash-account-detail({id:$ctrl.getNegativeSplit().account.id})">{{$ctrl.CashTransactionUtils.getNegativeSplit().account.name}}</a>
         </dd>
         <dt><span>InAccount</span></dt>
         <dd>
-            <a ui-sref="cash-account-detail({id:$ctrl.getPositiveSplit().account.id})">{{$ctrl.getPositiveSplit().account.name}}</a>
+            <a ui-sref="cash-account-detail({id:$ctrl.getPositiveSplit().account.id})">{{$ctrl.CashTransactionUtils.getPositiveSplit().account.name}}</a>
         </dd>
     </dl>
 

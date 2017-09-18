@@ -34,10 +34,10 @@ class CashTransactionNewListDialogController {
         const dataToSave = [];
         _.forEach(this.cashTransactionList, function (value) {
             if (value.toImport) {
-                CashTransactionUtils.createSplits(value, this.cashAccounts, this.cashCurrencies);
+                this.CashTransactionUtils.createSplits(value, this.cashAccounts, this.cashCurrencies);
                 dataToSave.push(value);
             }
-        });
+        }.bind(this));
         this.CashTransaction.save(dataToSave, this.onSaveSuccess.bind(this), this.onSaveError.bind(this));
     }
 
@@ -46,7 +46,6 @@ class CashTransactionNewListDialogController {
 export default {
     bindings: {
         resolve: '<',
-        cashTransactionList: '<',
         close: '&',
         dismiss: '&'
     },
