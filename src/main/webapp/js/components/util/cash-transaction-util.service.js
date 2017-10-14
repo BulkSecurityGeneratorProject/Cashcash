@@ -58,6 +58,12 @@ export default class CashTransactionUtils {
         return exchangeIds[0];
     };
 
+    flattenTransactionInfoList(cashTransactionList){
+        for (var i = 0; i < cashTransactionList.length; i++) {
+            this.flattenTransactionInfo(cashTransactionList[i]);
+        }
+    }
+
     flattenTransactionInfo(cashTransaction) {
         let outSplit;
         let inSplit;

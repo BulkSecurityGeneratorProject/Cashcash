@@ -13,6 +13,7 @@ class CashTransactionNewListDialogController {
         this.cashCurrencies = this.CashCurrency.query();
         this.cashAccounts = this.CashAccount.query();
         this.cashTransactionList = this.resolve.cashTransactionList;
+        this.CashTransactionUtils.flattenTransactionInfoList(this.cashTransactionList);
     }
 
     clear() {

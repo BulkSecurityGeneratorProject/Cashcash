@@ -29,6 +29,7 @@ class CashTransactionDialogController {
     $onInit() {
         this.cashCurrencies = this.CashCurrency.query();
         this.cashAccounts = this.CashAccount.query();
+        this.CashTransactionUtils.flattenTransactionInfo(this.cashTransaction);
 
         this.Principal.identity().then(function (account) {
             this.cashTransaction.user = account;

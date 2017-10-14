@@ -39,6 +39,7 @@ import entities from "./entities/entities.module";
 import modules from "./modules";
 import privateHelper from "./private";
 import "./visualize/index";
+import ngVue from "ngVue";
 
 // We manually assign the missing names
 angularSelectize2.name = "selectize";
@@ -60,6 +61,7 @@ const cashcashApp = modules
         angularLoadingBar,
         angularFileSaver,
         angularSelectize2.name,
+        'ngVue',
         /////////////////
         //cashcash module
         /////////////////

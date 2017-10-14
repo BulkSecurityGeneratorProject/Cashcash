@@ -15,6 +15,18 @@ let config = {
     module: {
         rules: [
             {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                options: {
+                    transformToRequire: {
+                        video: 'src',
+                        source: 'src',
+                        img: 'src',
+                        image: 'xlink:href'
+                    }
+                }
+            },
+            {
                 // JS LOADER
                 test: /\.js$/,
                 exclude: /node_modules/,

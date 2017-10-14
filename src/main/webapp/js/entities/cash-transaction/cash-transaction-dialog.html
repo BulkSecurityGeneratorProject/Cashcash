@@ -7,8 +7,11 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <cash-transaction-edit cash-transaction="$ctrl.cashTransaction" cash-accounts="$ctrl.cashAccounts"
-                               cash-currencies="$ctrl.cashCurrencies"/>
+        <vue-component name="CashTransactionEditVue"
+                       vprops-cash-transaction="$ctrl.cashTransaction"
+                       vprops-cash-accounts="$ctrl.cashAccounts"
+                       vprops-cash-currencies="$ctrl.cashCurrencies"
+                       vprops-is-import-panel="false"/>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$ctrl.clear()">

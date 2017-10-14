@@ -8,11 +8,11 @@
     <div class="modal-body modal-body-custom">
         <jh-alert-error></jh-alert-error>
         <div ng-form="cashTransactionForm">
-
-            <div ng-repeat="cashTransaction in $ctrl.cashTransactionList track by $index">
-                <cash-transaction-edit cash-transaction="cashTransaction" cash-accounts="$ctrl.cashAccounts"
-                                       cash-currencies="$ctrl.cashCurrencies" is-import-panel="true"/>
-            </div>
+            <vue-component name="CashTransactionEditListVue"
+                           vprops-cash-transactions="$ctrl.cashTransactionList"
+                           vprops-cash-accounts="$ctrl.cashAccounts"
+                           vprops-cash-currencies="$ctrl.cashCurrencies"
+                           vprops-is-import-panel="true"/>
         </div>
     </div>
 
