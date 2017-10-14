@@ -1,6 +1,6 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="panel-body" v-if="isMounted">
 
             <div class="row" v-if="isImportPanel">
                 <div class="col-lg-1">
@@ -64,10 +64,7 @@
                                 <i class="fa fa-tag"></i>
                             </div>
                             <selectize v-model="cashTransaction.type"
-                                       :settings="selectizeTransactionTypeConfig">
-                                <option v-for="cashTransactionType in cashTransactionTypes"
-                                        :value="cashTransactionType.type">{{cashTransactionType.text}}
-                                </option>
+                                       :settings="getSelectizeTransactionTypeConfig">
                             </selectize>
                         </div>
                     </div>
@@ -94,10 +91,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <selectize v-model="cashTransaction.currencyId"
-                                               :settings="selectizeCurrencyConfig">
-                                        <option v-for="cashCurrency in cashCurrencies"
-                                                :value="cashCurrency.id">{{cashCurrency.code}}
-                                        </option>
+                                               :settings="getSelectizeCurrencyConfig">
                                     </selectize>
                                 </div>
                             </div>
@@ -140,10 +134,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <selectize v-model="cashTransaction.convertedCurrencyId"
-                                               :settings="selectizeCurrencyConfig">
-                                        <option v-for="cashCurrency in cashCurrencies"
-                                                :value="cashCurrency.id">{{cashCurrency.code}}
-                                        </option>
+                                               :settings="getSelectizeCurrencyConfig">
                                     </selectize>
                                 </div>
                             </div>
@@ -158,10 +149,7 @@
                                 <i class="glyphicon glyphicon-modal-window"></i>
                             </div>
                             <selectize v-model="cashTransaction.exchangeAccountId"
-                                       :settings="selectizeExchangeAccountConfig">
-                                <option v-for="cashAccount in cashAccounts"
-                                        :value="cashAccount.id">{{cashAccount.name}}
-                                </option>
+                                       :settings="getSelectizeExchangeAccountConfig">
                             </selectize>
                         </div>
                     </div>
@@ -176,10 +164,7 @@
                                 <i class="glyphicon glyphicon-log-out"></i>
                             </div>
                             <selectize v-model="cashTransaction.outAccountId"
-                                       :settings="selectizeOutAccountConfig">
-                                <option v-for="cashAccount in cashAccounts"
-                                        :value="cashAccount.id">{{cashAccount.name}}
-                                </option>
+                                       :settings="getSelectizeOutAccountConfig">
                             </selectize>
                         </div>
                     </div>
@@ -191,10 +176,7 @@
                                 <i class="glyphicon glyphicon-log-in"></i>
                             </div>
                             <selectize v-model="cashTransaction.inAccountId"
-                                       :settings="selectizeInAccountConfig">
-                                <option v-for="cashAccount in cashAccounts"
-                                        :value="cashAccount.id">{{cashAccount.name}}
-                                </option>
+                                       :settings="getSelectizeInAccountConfig">
                             </selectize>
                         </div>
                     </div>
@@ -221,64 +203,24 @@
         },
         data() {
             return {
-                selectizeTransactionTypeConfig: {
-                    maxItems: 1,
-                    placeholder: 'type'
-                },
-                cashTransactionTypes: [{type: 'CREDIT', text: 'Generic credit'},
-                    {type: 'DEBIT', text: 'Generic debit'},
-                    {type: 'INT', text: 'Interest earned'},
-                    {type: 'DIV', text: 'Dividend'},
-                    {type: 'FEE', text: 'Bank fee'},
-                    {type: 'SRVCHG', text: 'Service charge'},
-                    {type: 'DEP', text: 'Deposit'},
-                    {type: 'ATM', text: 'ATM transaction'},
-                    {type: 'POS', text: 'Point of sale'},
-                    {type: 'XFER', text: 'Transfer'},
-                    {type: 'CHECK', text: 'Check'},
-                    {type: 'PAYMENT', text: 'Electronic payment'},
-                    {type: 'CASH', text: 'Cash'},
-                    {type: 'DIRECTDEP', text: 'Direct deposit'},
-                    {type: 'DIRECTDEBIT', text: 'Merchant-initiated debit'},
-                    {type: 'REPEATPMT', text: 'Repeating payment'},
-                    {type: 'OTHER', text: 'Other'}],
-                selectizeCurrencyConfig: {
-                    maxItems: 1,
-                    placeholder: 'currency'
-                },
-                selectizeOutAccountConfig: {
-                    maxItems: 1,
-                    optgroupField: 'type',
-                    optgroups: [{value: 'ASSET'},
-                        {value: 'LIABILITY'},
-                        {value: 'EQUITY'},
-                        {value: 'INCOME'},
-                        {value: 'EXPENSE'}],
-                    optgroupLabelField: 'value',
-                    placeholder: 'outAccount'
-                },
-                selectizeInAccountConfig: {
-                    maxItems: 1,
-                    optgroupField: 'type',
-                    optgroups: [{value: 'ASSET'},
-                        {value: 'LIABILITY'},
-                        {value: 'EQUITY'},
-                        {value: 'INCOME'},
-                        {value: 'EXPENSE'}],
-                    optgroupLabelField: 'value',
-                    placeholder: 'inAccount'
-                },
-                selectizeExchangeAccountConfig: {
-                    maxItems: 1,
-                    optgroupField: 'type',
-                    optgroups: [{value: 'ASSET'},
-                        {value: 'LIABILITY'},
-                        {value: 'EQUITY'},
-                        {value: 'INCOME'},
-                        {value: 'EXPENSE'}],
-                    optgroupLabelField: 'value',
-                    placeholder: 'exchangeAccount'
-                }
+                isMounted: false,
+                cashTransactionTypes: [{value: 'CREDIT', text: 'Generic credit'},
+                    {value: 'DEBIT', text: 'Generic debit'},
+                    {value: 'INT', text: 'Interest earned'},
+                    {value: 'DIV', text: 'Dividend'},
+                    {value: 'FEE', text: 'Bank fee'},
+                    {value: 'SRVCHG', text: 'Service charge'},
+                    {value: 'DEP', text: 'Deposit'},
+                    {value: 'ATM', text: 'ATM transaction'},
+                    {value: 'POS', text: 'Point of sale'},
+                    {value: 'XFER', text: 'Transfer'},
+                    {value: 'CHECK', text: 'Check'},
+                    {value: 'PAYMENT', text: 'Electronic payment'},
+                    {value: 'CASH', text: 'Cash'},
+                    {value: 'DIRECTDEP', text: 'Direct deposit'},
+                    {value: 'DIRECTDEBIT', text: 'Merchant-initiated debit'},
+                    {value: 'REPEATPMT', text: 'Repeating payment'},
+                    {value: 'OTHER', text: 'Other'}]
             }
         },
         methods: {
@@ -288,6 +230,81 @@
             toggleToImport: function () {
                 this.$set(this.cashTransaction, 'toImport', !this.cashTransaction.toImport);
             }
+        },
+        computed: {
+            getSelectizeTransactionTypeConfig: function () {
+                return {
+                    maxItems: 1,
+                    placeholder: 'type',
+                    valueField: 'value',
+                    labelField: 'text',
+                    options: this.cashTransactionTypes
+                };
+            },
+            getSelectizeCurrencyConfig: function () {
+                return {
+                    maxItems: 1,
+                    placeholder: 'currency',
+                    valueField: 'id',
+                    labelField: 'code',
+                    options: this.cashCurrencies
+                };
+            },
+            getSelectizeOutAccountConfig: function () {
+                return {
+                    maxItems: 1,
+                    valueField: 'id',
+                    labelField: 'name',
+                    searchField: ['name'],
+                    optgroupField: 'type',
+                    optgroups: [{value: 'ASSET'},
+                        {value: 'LIABILITY'},
+                        {value: 'EQUITY'},
+                        {value: 'INCOME'},
+                        {value: 'EXPENSE'}],
+                    optgroupLabelField: 'value',
+                    placeholder: 'outAccount',
+                    options: this.cashAccounts
+
+                };
+            },
+            getSelectizeInAccountConfig: function () {
+                return {
+                    maxItems: 1,
+                    valueField: 'id',
+                    labelField: 'name',
+                    searchField: ['name'],
+                    optgroupField: 'type',
+                    optgroups: [{value: 'ASSET'},
+                        {value: 'LIABILITY'},
+                        {value: 'EQUITY'},
+                        {value: 'INCOME'},
+                        {value: 'EXPENSE'}],
+                    optgroupLabelField: 'value',
+                    placeholder: 'inAccount',
+                    options: this.cashAccounts
+                };
+            },
+            getSelectizeExchangeAccountConfig: function () {
+                return {
+                    maxItems: 1,
+                    valueField: 'id',
+                    labelField: 'name',
+                    searchField: ['name'],
+                    optgroupField: 'type',
+                    optgroups: [{value: 'ASSET'},
+                        {value: 'LIABILITY'},
+                        {value: 'EQUITY'},
+                        {value: 'INCOME'},
+                        {value: 'EXPENSE'}],
+                    optgroupLabelField: 'value',
+                    placeholder: 'exchangeAccount',
+                    options: this.cashAccounts
+                };
+            }
+        },
+        mounted: function(){
+            this.isMounted = true;
         }
     }
 </script>
