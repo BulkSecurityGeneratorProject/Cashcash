@@ -41,19 +41,13 @@
                 <div class="col-lg-3">
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="input-group-addon btn btn-default" uib-tooltip="transactionDate">
-                                <i ng-click="$ctrl.openCalendar('transactionDate')"
-                                   class="glyphicon glyphicon-calendar"></i>
+                            <div class="input-group-addon" uib-tooltip="transactionDate">
+                                <i class="glyphicon glyphicon-calendar"></i>
                             </div>
-                            <input id="field_transactionDate"
-                                   type="text"
-                                   class="form-control"
-                                   name="transactionDate"
-                                   datetime-picker="yyyy-MM-dd"
-                                   v-model="cashTransaction.transactionDate"
-                                   is-open="$ctrl.datePickerOpenStatus.transactionDate"
-                                   placeholder="transactionDate"
-                                   required/>
+                            <date-picker v-model="cashTransaction.transactionDate"
+                                         :config="datePickerConfig"
+                                         placeholder="transactionDate">
+                            </date-picker>
                         </div>
                     </div>
                 </div>
@@ -189,11 +183,14 @@
 
 <script>
     import Selectize from 'vue2-selectize'
+    import datePicker from 'vue-bootstrap-datetimepicker';
+    import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css';
 
     export default {
         name: 'CashTransactionEditVue',
         components: {
-            Selectize
+            Selectize,
+            datePicker
         },
         props: {
             cashTransaction: Object,
@@ -220,7 +217,11 @@
                     {value: 'DIRECTDEP', text: 'Direct deposit'},
                     {value: 'DIRECTDEBIT', text: 'Merchant-initiated debit'},
                     {value: 'REPEATPMT', text: 'Repeating payment'},
-                    {value: 'OTHER', text: 'Other'}]
+                    {value: 'OTHER', text: 'Other'}],
+                datePickerConfig: {
+                    format: 'DD/MM/YYYY',
+                    useCurrent: false
+                }
             }
         },
         methods: {
