@@ -100,7 +100,7 @@ public class CashAccount extends CashOwnedResource {
 			insertable = false)
 	private Long currencyId;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JsonBackReference
 	private CashAccount parentAccount;
 
