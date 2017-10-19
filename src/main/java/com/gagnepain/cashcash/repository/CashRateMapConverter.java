@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -21,6 +22,7 @@ public class CashRateMapConverter implements AttributeConverter<Map<String, BigD
 	@Override
 	public String convertToDatabaseColumn(final Map<String, BigDecimal> stringDoubleMap) {
 		ObjectMapper mapper = new ObjectMapper();
+		mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 		try {
 			return mapper.writeValueAsString(stringDoubleMap);
 		} catch (JsonProcessingException e) {
@@ -32,7 +34,7 @@ public class CashRateMapConverter implements AttributeConverter<Map<String, BigD
 	@Override
 	public Map<String, BigDecimal> convertToEntityAttribute(final String jsonInString) {
 		ObjectMapper mapper = new ObjectMapper();
-
+		mapper.enable(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS);
 		try {
 			return mapper.readValue(jsonInString, Map.class);
 		} catch (IOException e) {
