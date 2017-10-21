@@ -20,12 +20,13 @@ export default class CashAccountUtils {
 
     extractSubAccounts(sortedAccountList, parentAccountNames) {
         var extractedAccountList = [];
-        var extractedAccountIdList = [];
+        var accountAndSubAccountIdList = [];
         for (let account of sortedAccountList) {
-            if ((account.parentAccount && _.includes(parentAccountNames, account.parentAccount.name))
-                || _.indexOf(extractedAccountIdList, account.parentAccountId) > -1) {
+            if (_.includes(parentAccountNames, account.name)) {
+                accountAndSubAccountIdList.push(account.id);
+            } else if (_.indexOf(accountAndSubAccountIdList, account.parentAccountId) > -1) {
                 extractedAccountList.push(account);
-                extractedAccountIdList.push(account.id);
+                accountAndSubAccountIdList.push(account.id);
             }
         }
         return extractedAccountList;
