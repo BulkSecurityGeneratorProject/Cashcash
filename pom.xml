@@ -988,7 +988,7 @@
                             <pushRegistry>registry.hub.docker.com</pushRegistry>
                             <images>
                                 <image>
-                                    <name>winbee/%a:%l</name>
+                                    <name>winbee/%a:%t</name>
                                     <alias>cashcash</alias>
                                     <build>
                                         <dockerFileDir>${project.basedir}</dockerFileDir>
