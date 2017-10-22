@@ -59,9 +59,9 @@ class CashAccountController {
             for (let value of this.splitSumList) {
                 const account = this.cashAccountMapById[value.accountId];
                 if (account.amount) {
-                    account.amount += this.CashConverter.getAmount(value, "EUR");
+                    account.amount += this.CashConverter.getAmount(value, account.currencyCode);
                 } else {
-                    account.amount = this.CashConverter.getAmount(value, "EUR");
+                    account.amount = this.CashConverter.getAmount(value, account.currencyCode);
                 }
             }
             this.tree_data = this.CashAccountUtils.lineToTree(this.cashAccounts, 'id', 'parentAccountId');
