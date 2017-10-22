@@ -106,6 +106,17 @@ class CashTransactionController {
         this.CashTransaction.query({}, this.onSuccessExportFile.bind(this), this.onError.bind(this));
     }
 
+    printAmount( cashTransaction ){
+        const positiveSplit = this.CashTransactionUtils.getPositiveSplit(cashTransaction);
+        let options = {
+            style: "currency",
+            currency: positiveSplit.currency.code,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        };
+        return positiveSplit.amount.toLocaleString(undefined, options);
+    }
+
 }
 
 export default {

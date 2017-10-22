@@ -27,7 +27,7 @@ class CashAccountController {
             {
                 field: 'amount',
                 displayName: 'Amount',
-                cellTemplate: '<div>{{node.amount.toFixed(2)}} {{node.currencyCode}}</div>'
+                cellTemplate: '<div>{{node.amount.toLocaleString(undefined, {style: "currency", currency: node.currencyCode, minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>'
             }, {
                 cellTemplate: '<account-interaction-panel cash-account="node"/>'
             }];

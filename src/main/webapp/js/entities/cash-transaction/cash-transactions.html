@@ -68,8 +68,7 @@
                 <td translate="{{'cashcashApp.CashTransactionType.' + cashTransaction.type}}">{{cashTransaction.type}}
                 </td>
                 <td ng-class="$ctrl.increaseAssets(cashTransaction) ? 'bg-success' : 'bg-danger'">
-                    {{$ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).amount + ' ' +
-                    $ctrl.CashTransactionUtils.getPositiveSplit(cashTransaction).currency.code}}
+                    {{$ctrl.printAmount(cashTransaction)}}
                 </td>
                 <td><a ng-click="$ctrl.addAccountFilter($ctrl.CashTransactionUtils.getNegativeSplit(cashTransaction).account.id)">{{$ctrl.CashTransactionUtils.getNegativeSplit(cashTransaction).account.name}}</a>
                 </td>
