@@ -176,6 +176,10 @@ angular-selectize2@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/angular-selectize2/-/angular-selectize2-1.2.3.tgz#ac926f82d7246d87010ba5be37f04aadf9116d95"
 
+angular-toastr@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/angular-toastr/-/angular-toastr-2.1.1.tgz#9f8350ca482145a44d011a755b8fb3623d60544c"
+
 angular-ui-bootstrap@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.0.tgz#2facefb915386655dc5f44150258032517236d01"

@@ -1,10 +1,11 @@
-export default function notificationInterceptor(AlertService) {
+export default function notificationInterceptor($injector) {
     "ngInject";
 
     function response(response) {
         var alertKey = response.headers('X-cashcashApp-alert');
         if (angular.isString(alertKey)) {
-            AlertService.success(alertKey, {param: response.headers('X-cashcashApp-params')});
+            const alertService = $injector.get('AlertService');
+            alertService.success(alertKey + response.headers('X-cashcashApp-params'));
         }
         return response;
     }

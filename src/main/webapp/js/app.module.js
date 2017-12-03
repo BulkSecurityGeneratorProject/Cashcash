@@ -2,6 +2,7 @@ import "./visualize/utils/lodash-mixins/index";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import "nvd3/build/nv.d3.css"
+import "angular-toastr/dist/angular-toastr.min.css"
 import "angular-loading-bar/build/loading-bar.css";
 import "../resources/css/main.css";
 import "../resources/css/ng-tree-dnd.css";
@@ -40,6 +41,7 @@ import modules from "./modules";
 import privateHelper from "./private";
 import "./visualize/index";
 import ngVue from "ngVue";
+import toastr from "angular-toastr";
 
 // We manually assign the missing names
 angularSelectize2.name = "selectize";
@@ -62,6 +64,7 @@ const cashcashApp = modules
         angularFileSaver,
         angularSelectize2.name,
         'ngVue',
+        toastr,
         /////////////////
         //cashcash module
         /////////////////

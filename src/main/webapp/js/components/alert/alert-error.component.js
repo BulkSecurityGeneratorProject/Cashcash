@@ -1,23 +1,22 @@
 import angular from "angular";
 
 class JhiAlertErrorController {
-    constructor($scope, AlertService, $rootScope) {
+    constructor($scope, AlertService, $rootScope, toastr) {
         "ngInject";
         this.$scope = $scope;
         this.AlertService = AlertService;
         this.$rootScope = $rootScope;
+        this.toastr = toastr;
     }
 
     $onInit() {
-        this.alerts = this.AlertService.get();
-
         this.cleanHttpErrorListener = this.$rootScope.$on('cashcashApp.httpError', function (event, httpResponse) {
             let i;
             event.stopPropagation();
             switch (httpResponse.status) {
                 // connection refused, server not reachable
                 case 0:
-                    this.addErrorAlert('Server not reachable', 'error.server.not.reachable');
+                    this.toastr.error('Server not reachable', 'Error');
                     break;
 
                 case 400:
@@ -25,31 +24,31 @@ class JhiAlertErrorController {
                     const entityKey = httpResponse.headers('X-cashcashApp-params');
                     if (errorHeader) {
                         const entityName = entityKey;
-                        this.addErrorAlert(errorHeader, errorHeader, {entityName: entityName});
+                        this.toastr.error(errorHeader + 'entity name=' + entityName, 'Error');
                     } else if (httpResponse.data && httpResponse.data.fieldErrors) {
                         for (i = 0; i < httpResponse.data.fieldErrors.length; i++) {
                             const fieldError = httpResponse.data.fieldErrors[i];
                             // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                             const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                             const fieldName = convertedField.charAt(0).toUpperCase() + convertedField.slice(1);
-                            this.addErrorAlert('Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, {fieldName: fieldName});
+                            this.toastr.error('Field ' + fieldName + ' cannot be empty', 'error.' + fieldError.message, 'Error');
                         }
                     } else if (httpResponse.data && httpResponse.data.message) {
-                        this.addErrorAlert(httpResponse.data.message, httpResponse.data.message, httpResponse.data);
+                        this.toastr.error(httpResponse.data.message, 'Error');
                     } else {
-                        this.addErrorAlert(httpResponse.data);
+                        this.toastr.error(httpResponse.data, 'Error');
                     }
                     break;
 
                 case 404:
-                    this.addErrorAlert('Not found', 'error.url.not.found');
+                    this.toastr.error('Not found', 'Error');
                     break;
 
                 default:
                     if (httpResponse.data && httpResponse.data.message) {
-                        this.addErrorAlert(httpResponse.data.message);
+                        this.toastr.error(httpResponse.data.message, 'Error');
                     } else {
-                        this.addErrorAlert(angular.toJson(httpResponse));
+                        this.toastr.error(httpResponse.data, 'Error');
                     }
             }
         }.bind(this));
@@ -57,29 +56,12 @@ class JhiAlertErrorController {
         this.$scope.$on('$destroy', function () {
             if (angular.isDefined(this.cleanHttpErrorListener) && this.cleanHttpErrorListener !== null) {
                 this.cleanHttpErrorListener();
-                this.alerts = [];
             }
         }.bind(this));
-    }
-
-    addErrorAlert(message) {
-        this.alerts.push(
-            this.AlertService.add(
-                {
-                    type: 'danger',
-                    msg: message,
-                    timeout: 5000,
-                    toast: this.AlertService.isToast(),
-                    scoped: true
-                },
-                this.alerts
-            )
-        );
     }
 }
 
 
 export default {
-    template: require("./alert.html"),
     controller: JhiAlertErrorController
 };
