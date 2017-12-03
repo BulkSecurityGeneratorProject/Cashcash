@@ -1,6 +1,6 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-body" v-if="isMounted" v-bind:class="{ deactivated: isImportPanel && !cashTransaction.toImport }">
+        <div class="panel-body" v-if="isMounted" v-bind:class="{ deactivated: isDesactivated }">
 
             <div class="row" v-if="isImportPanel">
                 <div class="col-lg-1">
@@ -31,7 +31,8 @@
                                    id="field_description"
                                    v-model="cashTransaction.description"
                                    placeholder="description"
-                                   required/>
+                                   required
+                                   :disabled="isDesactivated"/>
                         </div>
                     </div>
                 </div>
@@ -46,7 +47,8 @@
                             </div>
                             <date-picker v-model="cashTransaction.transactionDate"
                                          :config="datePickerConfig"
-                                         placeholder="transactionDate">
+                                         placeholder="transactionDate"
+                                         :disabled="isDesactivated">
                             </date-picker>
                         </div>
                     </div>
@@ -58,7 +60,8 @@
                                 <i class="fa fa-tag"></i>
                             </div>
                             <selectize v-model="cashTransaction.type"
-                                       :settings="getSelectizeTransactionTypeConfig">
+                                       :settings="getSelectizeTransactionTypeConfig"
+                                       :disabled="isDesactivated">
                             </selectize>
                         </div>
                     </div>
@@ -81,11 +84,13 @@
                                            id="field_amount"
                                            v-model="cashTransaction.amount"
                                            placeholder="amount"
-                                           required/>
+                                           required
+                                           :disabled="isDesactivated"/>
                                 </div>
                                 <div class="col-lg-4">
                                     <selectize v-model="cashTransaction.currencyId"
-                                               :settings="getSelectizeCurrencyConfig">
+                                               :settings="getSelectizeCurrencyConfig"
+                                               :disabled="isDesactivated">
                                     </selectize>
                                 </div>
                             </div>
@@ -103,7 +108,9 @@
                                 placeholder="multicurrency"
                                 uib-btn-checkbox><i class="fa fa-fw fa-check-square-o"
                                                     v-if="cashTransaction.multicurrency"/> <i
-                                class="fa fa-fw fa-square-o" v-if="!cashTransaction.multicurrency"/>Multicurrency
+                                class="fa fa-fw fa-square-o" v-if="!cashTransaction.multicurrency"
+                                />
+                            Multicurrency
                         </button>
                     </div>
                 </div>
@@ -124,11 +131,13 @@
                                            name="convertedAmount"
                                            id="field_convertedAmount"
                                            v-model="cashTransaction.convertedAmount"
-                                           placeholder="convertedAmount"/>
+                                           placeholder="convertedAmount"
+                                           :disabled="isDesactivated"/>
                                 </div>
                                 <div class="col-lg-4">
                                     <selectize v-model="cashTransaction.convertedCurrencyId"
-                                               :settings="getSelectizeCurrencyConfig">
+                                               :settings="getSelectizeCurrencyConfig"
+                                               :disabled="isDesactivated">
                                     </selectize>
                                 </div>
                             </div>
@@ -143,7 +152,8 @@
                                 <i class="glyphicon glyphicon-modal-window"></i>
                             </div>
                             <selectize v-model="cashTransaction.exchangeAccountId"
-                                       :settings="getSelectizeExchangeAccountConfig">
+                                       :settings="getSelectizeExchangeAccountConfig"
+                                       :disabled="isDesactivated">
                             </selectize>
                         </div>
                     </div>
@@ -158,7 +168,8 @@
                                 <i class="glyphicon glyphicon-log-out"></i>
                             </div>
                             <selectize v-model="cashTransaction.outAccountId"
-                                       :settings="getSelectizeOutAccountConfig">
+                                       :settings="getSelectizeOutAccountConfig"
+                                       :disabled="isDesactivated">
                             </selectize>
                         </div>
                     </div>
@@ -170,7 +181,8 @@
                                 <i class="glyphicon glyphicon-log-in"></i>
                             </div>
                             <selectize v-model="cashTransaction.inAccountId"
-                                       :settings="getSelectizeInAccountConfig">
+                                       :settings="getSelectizeInAccountConfig"
+                                       :disabled="isDesactivated">
                             </selectize>
                         </div>
                     </div>
@@ -233,6 +245,9 @@
             }
         },
         computed: {
+            isDesactivated: function () {
+              return this.isImportPanel && !this.cashTransaction.toImport;
+            },
             getSelectizeTransactionTypeConfig: function () {
                 return {
                     maxItems: 1,
@@ -311,6 +326,6 @@
 </script>
 <style scoped>
     .deactivated {
-        background-color: #d0d0d0;
+        background-color: #f5f5f5;
     }
 </style>
