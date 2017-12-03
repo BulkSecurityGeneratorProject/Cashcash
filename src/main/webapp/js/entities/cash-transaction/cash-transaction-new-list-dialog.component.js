@@ -13,6 +13,10 @@ class CashTransactionNewListDialogController {
         this.cashCurrencies = this.CashCurrency.query();
         this.cashAccounts = this.CashAccount.query();
         this.cashTransactionList = this.resolve.cashTransactionList;
+        for (var i = 0; i < this.cashTransactionList.length; i++) {
+            const cashTransaction = this.cashTransactionList[i];
+            cashTransaction.toImport = !cashTransaction.ofxIdAlreadyExist;
+        }
         this.CashTransactionUtils.flattenTransactionInfoList(this.cashTransactionList);
     }
 

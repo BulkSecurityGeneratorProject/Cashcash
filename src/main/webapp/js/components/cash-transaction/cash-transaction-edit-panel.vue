@@ -1,6 +1,6 @@
 <template>
     <div class="panel panel-default">
-        <div class="panel-body" v-if="isMounted">
+        <div class="panel-body" v-if="isMounted" v-bind:class="{ deactivated: isImportPanel && !cashTransaction.toImport }">
 
             <div class="row" v-if="isImportPanel">
                 <div class="col-lg-1">
@@ -309,3 +309,8 @@
         }
     }
 </script>
+<style scoped>
+    .deactivated {
+        background-color: #d0d0d0;
+    }
+</style>
