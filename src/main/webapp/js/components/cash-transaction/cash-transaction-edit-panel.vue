@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <div class="input-group">
+                        <div class="input-group" v-bind:class="{ 'has-error': cashTransaction.description.length < 2 || cashTransaction.description.length > 100 }" >
                             <div class="input-group-addon" uib-tooltip="description">
                                 <i class="fa fa-file-text"></i>
                             </div>
@@ -31,7 +31,7 @@
                                    id="field_description"
                                    v-model="cashTransaction.description"
                                    placeholder="description"
-                                   required ng-minlength="2"/>
+                                   required/>
                         </div>
                     </div>
                 </div>
